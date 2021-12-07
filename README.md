@@ -1,11 +1,11 @@
 # Capstone
 
-Students Hostel
+# Students Hostel
  
-Project Description :
+# Project Description :
 - In this application the student can easily reserve a room from the university.
 
-###Features List :
+# Features List :
 - Register & Login
 - Browse rooms
 - Browse hostel services
@@ -16,7 +16,7 @@ Project Description :
 - Complete reserve
 
 
-### Define The Scenes:
+#  Define The Scenes:
 - Screen #1: Login / Register UI
 - Screen #2: Home / Rooms types
 - Screen #3: Define room/Price and confirm the reserve
@@ -26,7 +26,7 @@ Project Description :
 - Screen #7: Terms and conditions
 - Screen #8: show Reserve completion  
 
-### User Story :
+# User Story :
 - As a student first i can register
 - As a student i can login
 - As a student i can browse rooms 
