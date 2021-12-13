@@ -13,7 +13,15 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
+    }
+    
+   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser != nil {
+            performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
+        }
     }
     
     func signIn(email:String, password:String) {
@@ -22,7 +30,7 @@ class LoginVC: UIViewController {
                 print(error.localizedDescription)
             }
             if authResult?.user.email != nil {
-                self?.performSegue(withIdentifier: "Home", sender: nil)
+                self?.performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
             }
         }
     }
@@ -31,9 +39,17 @@ class LoginVC: UIViewController {
         signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     
+    
     @IBAction func goToRegisterButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "Register", sender: nil)
+        performSegue(withIdentifier: Identifier.register.rawValue, sender: nil)
     }
     
 }
 
+extension UIViewController {
+     func presentAlert(title: String, message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+       present(alert, animated: true, completion: nil)
+    }
+}

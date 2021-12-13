@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842891CD2760A2EB00D3DC27 /* RoomsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */; };
+		842891CF2760C78B00D3DC27 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891CE2760C78B00D3DC27 /* Enums.swift */; };
+		842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D02760E69500D3DC27 /* RoomsImages.swift */; };
+		842891D32760EE5700D3DC27 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D22760EE5700D3DC27 /* Structs.swift */; };
+		842891D52761EC9400D3DC27 /* StudentsProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D42761EC9400D3DC27 /* StudentsProfiles.swift */; };
+		842891D72761F21A00D3DC27 /* StudentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D62761F21A00D3DC27 /* StudentApi.swift */; };
+		842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D8276394DC00D3DC27 /* RoomsApi.swift */; };
 		843CACBF275F6AFA001A8B58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACBE275F6AFA001A8B58 /* AppDelegate.swift */; };
 		843CACC1275F6AFA001A8B58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACC0275F6AFA001A8B58 /* SceneDelegate.swift */; };
 		843CACC3275F6AFA001A8B58 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACC2275F6AFA001A8B58 /* LoginVC.swift */; };
@@ -24,9 +31,17 @@
 		843CACE7275F8B6A001A8B58 /* HostelServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACE6275F8B6A001A8B58 /* HostelServicesVC.swift */; };
 		843CACE9275F8F95001A8B58 /* RoomsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACE8275F8F94001A8B58 /* RoomsCells.swift */; };
 		843CACEB275F9169001A8B58 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACEA275F9169001A8B58 /* Arrays.swift */; };
+		843CACED27608588001A8B58 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACEC27608587001A8B58 /* ServicesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsSelection.swift; sourceTree = "<group>"; };
+		842891CE2760C78B00D3DC27 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		842891D02760E69500D3DC27 /* RoomsImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsImages.swift; sourceTree = "<group>"; };
+		842891D22760EE5700D3DC27 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		842891D42761EC9400D3DC27 /* StudentsProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsProfiles.swift; sourceTree = "<group>"; };
+		842891D62761F21A00D3DC27 /* StudentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentApi.swift; sourceTree = "<group>"; };
+		842891D8276394DC00D3DC27 /* RoomsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsApi.swift; sourceTree = "<group>"; };
 		843CACBB275F6AFA001A8B58 /* StudentsHostel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentsHostel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843CACBE275F6AFA001A8B58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		843CACC0275F6AFA001A8B58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +58,7 @@
 		843CACE6275F8B6A001A8B58 /* HostelServicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostelServicesVC.swift; sourceTree = "<group>"; };
 		843CACE8275F8F94001A8B58 /* RoomsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCells.swift; sourceTree = "<group>"; };
 		843CACEA275F9169001A8B58 /* Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
+		843CACEC27608587001A8B58 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +114,7 @@
 				843CACC2275F6AFA001A8B58 /* LoginVC.swift */,
 				843CACDE275F70F0001A8B58 /* RegisterVC.swift */,
 				843CACE0275F7156001A8B58 /* HomeVC.swift */,
+				842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */,
 				843CACE2275F8B3B001A8B58 /* ProfileVC.swift */,
 				843CACE4275F8B50001A8B58 /* MyReservationsVC.swift */,
 				843CACE6275F8B6A001A8B58 /* HostelServicesVC.swift */,
@@ -109,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				843CACE8275F8F94001A8B58 /* RoomsCells.swift */,
+				843CACEC27608587001A8B58 /* ServicesCell.swift */,
+				842891D02760E69500D3DC27 /* RoomsImages.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -117,6 +136,11 @@
 			isa = PBXGroup;
 			children = (
 				843CACEA275F9169001A8B58 /* Arrays.swift */,
+				842891CE2760C78B00D3DC27 /* Enums.swift */,
+				842891D22760EE5700D3DC27 /* Structs.swift */,
+				842891D42761EC9400D3DC27 /* StudentsProfiles.swift */,
+				842891D62761F21A00D3DC27 /* StudentApi.swift */,
+				842891D8276394DC00D3DC27 /* RoomsApi.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -205,12 +229,20 @@
 				843CACC3275F6AFA001A8B58 /* LoginVC.swift in Sources */,
 				843CACE1275F7156001A8B58 /* HomeVC.swift in Sources */,
 				843CACDF275F70F0001A8B58 /* RegisterVC.swift in Sources */,
+				843CACED27608588001A8B58 /* ServicesCell.swift in Sources */,
+				842891CD2760A2EB00D3DC27 /* RoomsSelection.swift in Sources */,
 				843CACE9275F8F95001A8B58 /* RoomsCells.swift in Sources */,
+				842891CF2760C78B00D3DC27 /* Enums.swift in Sources */,
 				843CACBF275F6AFA001A8B58 /* AppDelegate.swift in Sources */,
 				843CACE7275F8B6A001A8B58 /* HostelServicesVC.swift in Sources */,
 				843CACE5275F8B50001A8B58 /* MyReservationsVC.swift in Sources */,
+				842891D72761F21A00D3DC27 /* StudentApi.swift in Sources */,
 				843CACC1275F6AFA001A8B58 /* SceneDelegate.swift in Sources */,
+				842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */,
+				842891D32760EE5700D3DC27 /* Structs.swift in Sources */,
+				842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */,
 				843CACEB275F9169001A8B58 /* Arrays.swift in Sources */,
+				842891D52761EC9400D3DC27 /* StudentsProfiles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
