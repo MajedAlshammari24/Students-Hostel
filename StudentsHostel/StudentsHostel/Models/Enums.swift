@@ -11,4 +11,6 @@ enum Identifier: String {
     case home
     case roomSelect
     case register
+    case terms
+    case completion
 }

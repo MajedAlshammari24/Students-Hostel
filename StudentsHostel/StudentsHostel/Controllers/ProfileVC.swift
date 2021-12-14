@@ -30,6 +30,14 @@ class ProfileVC: UIViewController {
      }
         
 }
+    @IBAction func logOutButton(_ sender: UIButton) {
+        try! Auth.auth().signOut()
+        
+        if let storyboard = self.storyboard {
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
     
     
 

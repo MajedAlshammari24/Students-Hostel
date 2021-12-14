@@ -7,11 +7,12 @@
 import UIKit
 
 class HomeVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var selectedRoomsType: Rooms?
     var requestArray = [Rooms]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         RoomsApi.getRooms { rooms in
@@ -25,22 +26,20 @@ class HomeVC: UIViewController {
         view.backgroundColor = .systemBackground
     }
     
-
-  
-
+    
+    
+    
 }
 
 extension HomeVC: UITableViewDelegate,UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "roomSelect" {
-            if let indexPaths = tableView.indexPathsForSelectedRows{
-                let destinationController = segue.destination as! RoomsSelection
-//                destinationController.imagesPass = rooms.photos
-                
-            }
-        }
+        
+        let destinationController = segue.destination as! RoomsSelection
+        destinationController.arrayImages = selectedRoomsType
+        
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requestArray.count
@@ -51,12 +50,10 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
         cell.roomTypeLabel.text = requestArray[indexPath.row].name
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRoomsType =  requestArray[indexPath.row]
         performSegue(withIdentifier: "roomSelect", sender: nil)
     }
-    
     
     
 }

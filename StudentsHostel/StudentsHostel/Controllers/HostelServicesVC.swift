@@ -11,16 +11,20 @@ class HostelServicesVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-   
-    
+    var requestArray = [Services]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ServicesApi.getServices { services in
+            DispatchQueue.main.async {
+                self.requestArray.append(services)
+                self.tableView.reloadData()
+            }
+        }
         tableView.delegate = self
         tableView.dataSource = self
 
     }
-    
 
    
 
@@ -28,13 +32,20 @@ class HostelServicesVC: UIViewController {
 
 extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return requestArray.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ServicesCell else { return UITableViewCell()}
-        cell.serviceLabel.text = servicesList[indexPath.row]
-        cell.serviceImage.image = images[indexPath.row]
+        cell.serviceLabel.text = requestArray[indexPath.row].name
+        
+        guard let images = requestArray[indexPath.row].image else { return UITableViewCell()}
+        guard let url = URL(string: images) else { return UITableViewCell()}
+        if let data = try? Data(contentsOf: url) {
+            cell.serviceImage.image = UIImage(data: data)
+        }
+        
         return cell
     }
     

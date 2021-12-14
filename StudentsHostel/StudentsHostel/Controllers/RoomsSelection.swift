@@ -8,53 +8,96 @@
 import UIKit
 
 class RoomsSelection: UIViewController {
-
-//    var imagesSelected:Rooms = Rooms(name: "", description: "", price: "", photos: [])
     
-    var imagesPass : [UIImage?] = []
-    
-    var requestArray = [Rooms]()
+    @IBOutlet weak var checkBoxButton: UIButton!
+    @IBOutlet weak var roomDescription: UILabel!
+    @IBOutlet weak var roomPrice: UILabel!
+    var arrayImages: Rooms?
+    var setArrayImages: Rooms?
+    var timer: Timer?
+    var currentCellIndex = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setArrayImages = arrayImages
         collectionView.delegate = self
         collectionView.dataSource = self
-        downloadImage()
+        collectionView.reloadData()
+        startTimer()
+        roomDescription.text = arrayImages?.description
+        roomPrice.text = arrayImages?.price
+        checkBoxButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        checkBoxButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
     }
-
-    func downloadImage() {
-        RoomsApi.getRooms { room in
-            let urlString = room.images
-            guard let url = URL(string: urlString!) else { return }
-            let getData = URLSession.shared.dataTask(with: url) { data, _, error in
-                guard let data = data, error == nil else { return }
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    print("-----------------\(image)")
+    
+    
+    
+    @IBAction func checkBoxAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
             }
-
-        }
-            getData.resume()
+           
+    
+    
+    func startTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
     }
-}
-    
-    
 
+    @objc func moveToNextIndex() {
+        if currentCellIndex < (setArrayImages?.images?.count ?? 0) - 1 {
+            currentCellIndex += 1
+        }
+        else {
+            currentCellIndex = 0
+        }
+        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+    }
+    
+    
+    
+    
+    
+    @IBAction func reserveCompletion(_ sender: UIButton) {
+        if checkBoxButton.imageView == UIImage(systemName: "checkmark.square") {
+        termsAlert()
+        } else {
+            performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
+        }
+    }
+    
+    
+    func termsAlert(){
+        let alert = UIAlertController(title: "You did not agree", message: "Please Agree to our terms and conditions", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Terms And Conditions", style: .default, handler: { terms in
+            self.performSegue(withIdentifier: Identifier.terms.rawValue, sender: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
 }
+
+
 
 extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return requestArray.count
+        return setArrayImages?.images?.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
         
-//        cell.roomsImageView.image = requestArray[indexPath.row]
+        guard let arrayImages = setArrayImages?.images?[indexPath.row] else { return UICollectionViewCell() }
+            guard let url = URL(string: arrayImages) else { return UICollectionViewCell() }
+            if let data = try? Data(contentsOf: url) {
+                cell.roomsImageView.image = UIImage(data: data)
+            }
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }

@@ -11,6 +11,8 @@ import FirebaseFirestore
 class Rooms {
     var images: [String]?
     var name: String?
+    var description: String?
+    var price: String?
 }
 
 extension Rooms {
@@ -19,6 +21,8 @@ extension Rooms {
         let rooms = Rooms()
         rooms.images = dict["images"] as? [String]
         rooms.name = dict["name"] as? String
+        rooms.description = dict["description"] as? String
+        rooms.price = dict["price"] as? String
         return rooms
     }
 }
