@@ -168,14 +168,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" editingAccessoryType="disclosureIndicator" id="aen-UV-Vdy" customClass="RoomsCells" customModule="StudentsHostel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aen-UV-Vdy" id="ODg-eP-8DC">
-                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edP-n9-Cc3">
-                                                    <rect key="frame" x="20" y="11" width="296.5" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="296.5" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -613,8 +613,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cZT-jm-tPh">
-                                <rect key="frame" x="52" y="118" width="310" height="282"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQH-lB-w9K">
+                                <rect key="frame" x="146" y="569" width="122" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log out"/>
+                                <connections>
+                                    <action selector="logOutButton:" destination="s2E-9m-TRu" eventType="touchUpInside" id="XCZ-Im-Q2E"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-4f-atI">
+                                <rect key="frame" x="158" y="88" width="110" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cZT-jm-tPh">
+                                <rect key="frame" x="58" y="224" width="310" height="282"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mk5-yY-XQz">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
@@ -648,33 +660,33 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQH-lB-w9K">
-                                <rect key="frame" x="146" y="477" width="122" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Log out"/>
-                                <connections>
-                                    <action selector="logOutButton:" destination="s2E-9m-TRu" eventType="touchUpInside" id="XCZ-Im-Q2E"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QNY-5L-erX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nQH-lB-w9K" firstAttribute="top" secondItem="cZT-jm-tPh" secondAttribute="bottom" constant="77" id="H9k-yj-zn8"/>
-                            <constraint firstItem="cZT-jm-tPh" firstAttribute="leading" secondItem="QNY-5L-erX" secondAttribute="leading" constant="52" id="Vj1-Gl-E0e"/>
+                            <constraint firstItem="nQH-lB-w9K" firstAttribute="top" secondItem="cZT-jm-tPh" secondAttribute="bottom" constant="63" id="H9k-yj-zn8"/>
+                            <constraint firstItem="cZT-jm-tPh" firstAttribute="leading" secondItem="QNY-5L-erX" secondAttribute="leading" constant="58" id="Vj1-Gl-E0e"/>
                             <constraint firstItem="nQH-lB-w9K" firstAttribute="leading" secondItem="QNY-5L-erX" secondAttribute="leading" constant="146" id="XgN-Je-SIr"/>
                             <constraint firstItem="QNY-5L-erX" firstAttribute="trailing" secondItem="nQH-lB-w9K" secondAttribute="trailing" constant="146" id="hqG-yn-doE"/>
-                            <constraint firstItem="QNY-5L-erX" firstAttribute="trailing" secondItem="cZT-jm-tPh" secondAttribute="trailing" constant="52" id="met-zi-Rgg"/>
-                            <constraint firstItem="cZT-jm-tPh" firstAttribute="top" secondItem="QNY-5L-erX" secondAttribute="top" constant="30" id="xFG-07-edT"/>
+                            <constraint firstItem="QNY-5L-erX" firstAttribute="trailing" secondItem="cZT-jm-tPh" secondAttribute="trailing" constant="46" id="met-zi-Rgg"/>
+                            <constraint firstItem="cZT-jm-tPh" firstAttribute="top" secondItem="QNY-5L-erX" secondAttribute="top" constant="136" id="xFG-07-edT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="467-1K-dN7"/>
+                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="467-1K-dN7">
+                        <barButtonItem key="leftBarButtonItem" title="Add Image" id="vJA-wS-HJS">
+                            <connections>
+                                <action selector="addImageButton:" destination="s2E-9m-TRu" id="JRf-kB-tpV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="EJP-l2-maJ" id="hAj-qp-3zU"/>
                         <outlet property="emailLabel" destination="R72-nQ-Nb0" id="deN-5J-JlG"/>
                         <outlet property="mobileLabel" destination="5Lz-jX-9wq" id="DkG-aj-eCq"/>
                         <outlet property="nameLabel" destination="mk5-yY-XQz" id="QLH-z3-MZ7"/>
+                        <outlet property="profileImage" destination="2gx-4f-atI" id="2K5-Yg-5FW"/>
                         <outlet property="studentIDLabel" destination="EJP-l2-maJ" id="Yyj-lc-wIw"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginVC" modalPresentationStyle="fullScreen" id="jZo-2V-jAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XpZ-jJ-DF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

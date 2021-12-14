@@ -27,15 +27,27 @@ class RoomsSelection: UIViewController {
         startTimer()
         roomDescription.text = arrayImages?.description
         roomPrice.text = arrayImages?.price
-        checkBoxButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        checkBoxButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        checkBoxButton.setImage(UIImage(systemName: "app"), for: .normal)
+        //checkBoxButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
     }
     
     
     
     @IBAction func checkBoxAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        DispatchQueue.main.async {
+            if sender.image(for: .normal) == UIImage(systemName: "app") {
+                sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+                //sender.isSelected = !sender.isSelected
+                //sender.setImage(UIImage(systemName: "app"), for: .normal)
+            } else {
+                //sender.isSelected = !sender.isSelected
+                sender.setImage(UIImage(systemName: "app"), for: .normal)
             }
+            
+        }
+           
+        
+    }
            
     
     
@@ -58,7 +70,7 @@ class RoomsSelection: UIViewController {
     
     
     @IBAction func reserveCompletion(_ sender: UIButton) {
-        if checkBoxButton.imageView == UIImage(systemName: "checkmark.square") {
+        if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
         termsAlert()
         } else {
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
