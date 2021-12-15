@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 class RegisterVC: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
@@ -19,7 +19,7 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     func signUp(name:String, email: String, password: String, studentID: Int32, mobileNumber:String, city: String) {
@@ -34,13 +34,9 @@ class RegisterVC: UIViewController {
                         self?.performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
                     }
                 }
-                
             }
             
-            
         }
-        
-        
         
     }
     
@@ -57,5 +53,5 @@ class RegisterVC: UIViewController {
         signUp(name: name!, email: email!, password: password!, studentID: studentID, mobileNumber: mobileNumber!, city: city!)
     }
     
-
+    
 }

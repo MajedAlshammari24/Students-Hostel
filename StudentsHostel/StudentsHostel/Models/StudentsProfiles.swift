@@ -15,6 +15,7 @@ class Student {
     var mobileNumber: String?
     var studentID: Int32?
     var city: String?
+    var imageProfile: String?
 }
 
 extension Student {
@@ -27,16 +28,25 @@ extension Student {
         student.mobileNumber = dict["mobileNumber"] as? String
         student.city = dict["city"] as? String
         student.studentID = dict["studentID"] as? Int32
+        student.imageProfile = dict["imageProfile"] as? String
         return student
     }
     
-    static func createUser(name:String,email:String,mobileNumber:String,studentID:Int,city:String) -> [String: Any] {
+    static func createUser(name:String,email:String,mobileNumber:String,studentID:Int,city:String,imageProfile:String) -> [String: Any] {
         
         let newStudent = ["name":name,
                           "email":email,
                           "mobileNumber":mobileNumber,
                           "studentID":studentID,
-                          "city":city
+                          "city":city,
+                          "imageProfile":imageProfile
+                         ] as [String : Any]
+        return newStudent
+        
+    }
+    static func putImageProfile(imageProfileUrl:String) -> [String: Any] {
+        
+        let newStudent = ["imageProfile":imageProfileUrl
                          ] as [String : Any]
         return newStudent
         

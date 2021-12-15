@@ -8,45 +8,78 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import SwiftUI
 class ProfileVC: UIViewController {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    var activityView : UIActivityIndicatorView?
+    var selfimageurl : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        Indicator.start(view: self.view, activityIndicator: self.activityView!, isUserInteractionEnabled: false)
         
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
-            
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
             self.mobileLabel.text = student.mobileNumber
-            self.studentIDLabel.text = String(student.studentID ?? 0)
-            print(student.studentID)
+            self.selfimageurl = student.imageProfile
+            self.saveImageProfile()
+            self.studentIDLabel.text = "\(String(describing: student.studentID))"
             self.cityLabel.text = student.city
-     }
-        
-}
-    @IBAction func addImageButton(_ sender: Any) {
+        }
+        Indicator.stop(view: self.view, activityIndicator: self.activityView!)
     }
+    
+    
+    private func saveImageProfile() {
+        guard let url = URL(string: self.selfimageurl ?? "") else { return}
+        if let data = try? Data(contentsOf: url) {
+            self.profileImage.image = UIImage(data: data)
+        }
+    }
+    
+    @IBAction func didTapImage(_ sender: UITapGestureRecognizer) {
+        self.photoPickAlert()
+    }
+    
     @IBAction func logOutButton(_ sender: UIButton) {
         try! Auth.auth().signOut()
         
         performSegue(withIdentifier: "loginVC", sender: nil)
-//        if let storyboard = self.storyboard {
-//            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
-//            vc.presentationController?.presentationStyle = .fullScreen
-//            self.present(vc, animated: true, completion: nil)
-//        }
+        //        if let storyboard = self.storyboard {
+        //            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
+        //            vc.presentationController?.presentationStyle = .fullScreen
+        //            self.present(vc, animated: true, completion: nil)
+        //        }
     }
     
 }
 
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    private func photoPickAlert() {
+        
+        let alert = UIAlertController(title: "Choose Your Photo", message: "From where you want to pick the photo?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+            self.getProfileImage(fromSourceType: .camera)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+            self.getProfileImage(fromSourceType: .photoLibrary)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
     func getProfileImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
@@ -62,6 +95,11 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         dismiss(animated: true) { [weak self] in
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
             self?.profileImage.image = image
+            StudentApi.uploadStudentImage(studentImage: image) { check, url in
+                if check {
+                    StudentApi.addImageProfile(uid: Auth.auth().currentUser?.uid ?? "", url: url ?? "")
+                }
+            }
         }
     }
     

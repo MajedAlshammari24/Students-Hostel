@@ -28,7 +28,7 @@ class RoomsSelection: UIViewController {
         roomDescription.text = arrayImages?.description
         roomPrice.text = arrayImages?.price
         checkBoxButton.setImage(UIImage(systemName: "app"), for: .normal)
-        //checkBoxButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
+    
     }
     
     
@@ -37,13 +37,9 @@ class RoomsSelection: UIViewController {
         DispatchQueue.main.async {
             if sender.image(for: .normal) == UIImage(systemName: "app") {
                 sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-                //sender.isSelected = !sender.isSelected
-                //sender.setImage(UIImage(systemName: "app"), for: .normal)
             } else {
-                //sender.isSelected = !sender.isSelected
                 sender.setImage(UIImage(systemName: "app"), for: .normal)
             }
-            
         }
            
         

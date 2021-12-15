@@ -42,10 +42,12 @@ extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let images = requestArray[indexPath.row].image else { return UITableViewCell()}
         guard let url = URL(string: images) else { return UITableViewCell()}
-        if let data = try? Data(contentsOf: url) {
-            cell.serviceImage.image = UIImage(data: data)
-        }
         
+        DispatchQueue.main.async {
+            if let data = try? Data(contentsOf: url) {
+                cell.serviceImage.image = UIImage(data: data)
+            }
+        }
         return cell
     }
     

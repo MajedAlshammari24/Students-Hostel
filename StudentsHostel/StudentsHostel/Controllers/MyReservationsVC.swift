@@ -9,9 +9,11 @@ import UIKit
 
 class MyReservationsVC: UIViewController {
 
+    @IBOutlet weak var reserveStatusLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         
     }
     
