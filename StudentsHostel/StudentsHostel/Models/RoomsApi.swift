@@ -43,10 +43,7 @@ class RoomsApi {
                         completion(room)
                     }
                 }
-               
             }
-            
         }
     }
-    
 }

@@ -15,7 +15,6 @@
 		842891D72761F21A00D3DC27 /* StudentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D62761F21A00D3DC27 /* StudentApi.swift */; };
 		842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D8276394DC00D3DC27 /* RoomsApi.swift */; };
 		842891DB27671CF700D3DC27 /* ServicesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891DA27671CF500D3DC27 /* ServicesApi.swift */; };
-		842891DD2767D1D600D3DC27 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891DC2767D1D500D3DC27 /* CheckBox.swift */; };
 		842891DF27688BCE00D3DC27 /* TermsAndConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891DE27688BCD00D3DC27 /* TermsAndConditionsViewController.swift */; };
 		842891E127688C9300D3DC27 /* ConfirmReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891E027688C9300D3DC27 /* ConfirmReservation.swift */; };
 		843CACBF275F6AFA001A8B58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACBE275F6AFA001A8B58 /* AppDelegate.swift */; };
@@ -49,7 +48,6 @@
 		842891D62761F21A00D3DC27 /* StudentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentApi.swift; sourceTree = "<group>"; };
 		842891D8276394DC00D3DC27 /* RoomsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsApi.swift; sourceTree = "<group>"; };
 		842891DA27671CF500D3DC27 /* ServicesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesApi.swift; sourceTree = "<group>"; };
-		842891DC2767D1D500D3DC27 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		842891DE27688BCD00D3DC27 /* TermsAndConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsViewController.swift; sourceTree = "<group>"; };
 		842891E027688C9300D3DC27 /* ConfirmReservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservation.swift; sourceTree = "<group>"; };
 		843CACBB275F6AFA001A8B58 /* StudentsHostel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentsHostel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,7 +155,6 @@
 				842891D62761F21A00D3DC27 /* StudentApi.swift */,
 				842891D8276394DC00D3DC27 /* RoomsApi.swift */,
 				842891DA27671CF500D3DC27 /* ServicesApi.swift */,
-				842891DC2767D1D500D3DC27 /* CheckBox.swift */,
 				844A299D276A11A500B6E024 /* Indicator.swift */,
 			);
 			path = Models;
@@ -255,7 +252,6 @@
 				843CACC3275F6AFA001A8B58 /* LoginVC.swift in Sources */,
 				843CACE1275F7156001A8B58 /* HomeVC.swift in Sources */,
 				843CACDF275F70F0001A8B58 /* RegisterVC.swift in Sources */,
-				842891DD2767D1D600D3DC27 /* CheckBox.swift in Sources */,
 				842891DF27688BCE00D3DC27 /* TermsAndConditionsViewController.swift in Sources */,
 				843CACED27608588001A8B58 /* ServicesCell.swift in Sources */,
 				842891E127688C9300D3DC27 /* ConfirmReservation.swift in Sources */,

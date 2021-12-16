@@ -20,6 +20,7 @@ class StudentApi {
         completion(true)
         
     }
+    
     static func addImageProfile(uid:String,url:String) {
         let refStudents = Firestore.firestore().collection("Students")
         refStudents.document(uid).setData(Student.putImageProfile(imageProfileUrl: url),merge: true)

@@ -17,30 +17,38 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    var activityView : UIActivityIndicatorView?
+    var activityView : UIActivityIndicatorView = {
+        let activityView = UIActivityIndicatorView()
+        return activityView
+    }()
+    
     var selfimageurl : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(activityView)
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
-        Indicator.start(view: self.view, activityIndicator: self.activityView!, isUserInteractionEnabled: false)
-        
+        Indicator.start(view: self.view, activityIndicator: self.activityView, isUserInteractionEnabled: false)
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
+            Indicator.stop(view: self.view, activityIndicator: self.activityView)
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
             self.mobileLabel.text = student.mobileNumber
             self.selfimageurl = student.imageProfile
             self.saveImageProfile()
-            self.studentIDLabel.text = "\(String(describing: student.studentID))"
+            self.studentIDLabel.text = "\(student.studentID ?? 0)"
             self.cityLabel.text = student.city
         }
-        Indicator.stop(view: self.view, activityIndicator: self.activityView!)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        activityView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    }
     
     private func saveImageProfile() {
-        guard let url = URL(string: self.selfimageurl ?? "") else { return}
+        guard let url = URL(string: self.selfimageurl ?? "") else {return}
         if let data = try? Data(contentsOf: url) {
             self.profileImage.image = UIImage(data: data)
         }

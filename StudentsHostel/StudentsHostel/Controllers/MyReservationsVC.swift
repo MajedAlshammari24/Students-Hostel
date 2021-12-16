@@ -12,9 +12,7 @@ class MyReservationsVC: UIViewController {
     @IBOutlet weak var reserveStatusLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
+        reserveStatusLabel.text = "You haven't made reserve yet!"
     }
     
 

@@ -21,4 +21,5 @@ class Indicator: NSObject {
     activityIndicator.removeFromSuperview()
     view.isUserInteractionEnabled = true
   }
+    
 }

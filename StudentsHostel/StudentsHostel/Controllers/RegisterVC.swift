@@ -37,7 +37,6 @@ class RegisterVC: UIViewController {
             }
             
         }
-        
     }
     
     

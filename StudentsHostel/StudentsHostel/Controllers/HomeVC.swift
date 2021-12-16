@@ -50,6 +50,7 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
         cell.roomTypeLabel.text = requestArray[indexPath.row].name
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRoomsType =  requestArray[indexPath.row]
         performSegue(withIdentifier: "roomSelect", sender: nil)
@@ -57,3 +58,16 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
     
     
 }
+
+//extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        <#code#>
+//    }
+    
+    
+    
+//}
