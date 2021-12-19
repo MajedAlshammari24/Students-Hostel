@@ -16,7 +16,7 @@ class RoomsSelection: UIViewController {
     var setArrayImages: Rooms?
     var timer: Timer?
     var currentCellIndex = 0
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class RoomsSelection: UIViewController {
         roomDescription.text = arrayImages?.description
         roomPrice.text = arrayImages?.price
         checkBoxButton.setImage(UIImage(systemName: "app"), for: .normal)
-    
+        
     }
     
     
@@ -41,16 +41,16 @@ class RoomsSelection: UIViewController {
                 sender.setImage(UIImage(systemName: "app"), for: .normal)
             }
         }
-           
+        
         
     }
-           
+    
     
     
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
     }
-
+    
     @objc func moveToNextIndex() {
         if currentCellIndex < (setArrayImages?.images?.count ?? 0) - 1 {
             currentCellIndex += 1
@@ -67,13 +67,14 @@ class RoomsSelection: UIViewController {
     
     @IBAction func reserveCompletion(_ sender: UIButton) {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
-        termsAlert()
+            termsAlert()
+            
         } else {
             RoomsApi
-                .getRooms { room in
+                .getRooms { rooms in
                     let uid = Auth.auth().currentUser?.uid
-                    let roomName = room.name
-                    let price = room.price
+                    let roomName = rooms.name
+                    let price = rooms.price
                     let status = "Pending"
                     Reservation.addReservation(uid: uid ?? "", roomName: roomName ?? "", price: price ?? "", status: status) { reserve in
                         
@@ -110,10 +111,10 @@ extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
         
         guard let arrayImages = setArrayImages?.images?[indexPath.row] else { return UICollectionViewCell() }
-            guard let url = URL(string: arrayImages) else { return UICollectionViewCell() }
-            if let data = try? Data(contentsOf: url) {
-                cell.roomsImageView.image = UIImage(data: data)
-            }
+        guard let url = URL(string: arrayImages) else { return UICollectionViewCell() }
+        if let data = try? Data(contentsOf: url) {
+            cell.roomsImageView.image = UIImage(data: data)
+        }
         return cell
     }
     

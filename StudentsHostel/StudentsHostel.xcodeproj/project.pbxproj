@@ -40,6 +40,8 @@
 		844A299E276A11A500B6E024 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A299D276A11A500B6E024 /* Indicator.swift */; };
 		844A29A0276F068900B6E024 /* ServicesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A299F276F068900B6E024 /* ServicesDescription.swift */; };
 		844A29A2276F06FD00B6E024 /* ServicesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */; };
+		84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */; };
+		84B1E237276F8FEF00D88F53 /* HomePageImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		844A299D276A11A500B6E024 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		844A299F276F068900B6E024 /* ServicesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescription.swift; sourceTree = "<group>"; };
 		844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescriptionCell.swift; sourceTree = "<group>"; };
+		84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImagesApi.swift; sourceTree = "<group>"; };
+		84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageImagesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 				843CACEC27608587001A8B58 /* ServicesCell.swift */,
 				842891D02760E69500D3DC27 /* RoomsImages.swift */,
 				844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */,
+				84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				842891D42761EC9400D3DC27 /* StudentsProfiles.swift */,
 				842891D62761F21A00D3DC27 /* StudentApi.swift */,
 				842891D8276394DC00D3DC27 /* RoomsApi.swift */,
+				84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */,
 				842891DA27671CF500D3DC27 /* ServicesApi.swift */,
 				840760F5276F10E7009108F0 /* ReserveStatusApi.swift */,
 				844A299D276A11A500B6E024 /* Indicator.swift */,
@@ -265,6 +271,7 @@
 				842891DF27688BCE00D3DC27 /* TermsAndConditionsViewController.swift in Sources */,
 				843CACED27608588001A8B58 /* ServicesCell.swift in Sources */,
 				842891E127688C9300D3DC27 /* ConfirmReservation.swift in Sources */,
+				84B1E237276F8FEF00D88F53 /* HomePageImagesCell.swift in Sources */,
 				842891CD2760A2EB00D3DC27 /* RoomsSelection.swift in Sources */,
 				842891DB27671CF700D3DC27 /* ServicesApi.swift in Sources */,
 				843CACE9275F8F95001A8B58 /* RoomsCells.swift in Sources */,
@@ -280,6 +287,7 @@
 				842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */,
 				842891D32760EE5700D3DC27 /* Structs.swift in Sources */,
 				842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */,
+				84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */,
 				843CACEB275F9169001A8B58 /* Arrays.swift in Sources */,
 				842891D52761EC9400D3DC27 /* StudentsProfiles.swift in Sources */,
 			);
