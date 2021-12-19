@@ -24,6 +24,8 @@ class LoginVC: UIViewController {
         }
     }
     
+    
+    
     func signIn(email:String, password:String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {

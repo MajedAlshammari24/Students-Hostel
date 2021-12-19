@@ -38,7 +38,7 @@ class StudentApi {
                 completion(student)
             }
         }
-        
+    
     }
     
     static func uploadStudentImage(studentImage:UIImage, completion: @escaping (Bool,String?) -> Void) {

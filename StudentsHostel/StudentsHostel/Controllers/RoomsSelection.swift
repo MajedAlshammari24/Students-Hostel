@@ -4,7 +4,7 @@
 //
 //  Created by Majed Alshammari on 04/05/1443 AH.
 //
-
+import FirebaseAuth
 import UIKit
 
 class RoomsSelection: UIViewController {
@@ -16,7 +16,7 @@ class RoomsSelection: UIViewController {
     var setArrayImages: Rooms?
     var timer: Timer?
     var currentCellIndex = 0
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,17 @@ class RoomsSelection: UIViewController {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
         termsAlert()
         } else {
+            RoomsApi
+                .getRooms { room in
+                    let uid = Auth.auth().currentUser?.uid
+                    let roomName = room.name
+                    let price = room.price
+                    let status = "Pending"
+                    Reservation.addReservation(uid: uid ?? "", roomName: roomName ?? "", price: price ?? "", status: status) { reserve in
+                        
+                    }
+                }
+            
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
         }
     }

@@ -6,13 +6,16 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class MyReservationsVC: UIViewController {
 
     @IBOutlet weak var reserveStatusLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        reserveStatusLabel.text = "You haven't made reserve yet!"
+        Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status in
+            self.reserveStatusLabel.text = status.roomName
+        }
+//        reserveStatusLabel.text = "You haven't made reserve yet!"
     }
     
 

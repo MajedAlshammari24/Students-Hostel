@@ -17,21 +17,23 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
-    var activityView : UIActivityIndicatorView = {
-        let activityView = UIActivityIndicatorView()
-        return activityView
-    }()
+
+    
+    
     
     var selfimageurl : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(activityView)
+//        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
+//        activityIndicator.center = view.center
+//        activityIndicator.hidesWhenStopped = false
+//        view.addSubview(activityIndicator)
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
-        Indicator.start(view: self.view, activityIndicator: self.activityView, isUserInteractionEnabled: false)
+//        Indicator.start(view: self.view, activityIndicator: self.activityIn, isUserInteractionEnabled: false)
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
-            Indicator.stop(view: self.view, activityIndicator: self.activityView)
+//            Indicator.stop(view: self.view, activityIndicator: self.activityView)
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
             self.mobileLabel.text = student.mobileNumber
@@ -44,8 +46,9 @@ class ProfileVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        activityView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
     }
+
+    
     
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
