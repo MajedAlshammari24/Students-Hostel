@@ -15,7 +15,9 @@ class HostelServicesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showSpinner()
         ServicesApi.getServices { services in
+            self.removeSpinner()
             DispatchQueue.main.async {
                 self.requestArray.append(services)
                 self.tableView.reloadData()
@@ -42,7 +44,6 @@ extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let images = requestArray[indexPath.row].image else { return UITableViewCell()}
         guard let url = URL(string: images) else { return UITableViewCell()}
-        
         DispatchQueue.main.async {
             if let data = try? Data(contentsOf: url) {
                 cell.serviceImage.image = UIImage(data: data)

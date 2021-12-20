@@ -30,7 +30,6 @@ class RegisterVC: UIViewController {
             } else {
                 StudentApi.addStudent(uid: authResult?.user.uid ?? "", name: name, email: email, mobileNumber: mobileNumber, studentID: studentID, city: city) { check in
                     if check {
-                        print("Done Saving in DataBase")
                         self?.performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
                     }
                 }

@@ -18,11 +18,11 @@ class Reservation {
 
 extension Reservation {
     
-    static func addReservation(uid: String, roomName: String, price: String, status: String, completion: @escaping (Bool) -> Void) {
+    static func addReservation(uid: String, roomName: String, price: String, status: String) {
         let db = Firestore.firestore()
         let refReservation = db.collection("Reservations")
         refReservation.document(uid).setData(Reservation.createReserve(roomName: roomName, price: price, status: status))
-        completion(true)
+        
     }
     
     static func getReservation(dict: [String : Any]) -> Reservation {

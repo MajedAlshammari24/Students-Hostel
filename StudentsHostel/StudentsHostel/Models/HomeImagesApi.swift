@@ -33,8 +33,8 @@ class HomeImagesApi {
             for document in documents {
                 refImages.document(document.documentID).getDocument { document, error in
                     if let doc = document, doc.exists {
-                        let image = HomeImages.getHomeImages(dict: doc.data()!)
-                        completion(image)
+                        let photo = HomeImages.getHomeImages(dict: doc.data()!)
+                        completion(photo)
                     }
                 }
             }

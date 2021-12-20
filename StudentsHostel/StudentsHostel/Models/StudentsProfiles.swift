@@ -13,7 +13,7 @@ class Student {
     var name: String?
     var email: String?
     var mobileNumber: String?
-    var studentID: Int32?
+    var studentID: Int?
     var city: String?
     var imageProfile: String?
 }
@@ -27,7 +27,7 @@ extension Student {
         student.email = dict["email"] as? String
         student.mobileNumber = dict["mobileNumber"] as? String
         student.city = dict["city"] as? String
-        student.studentID = dict["studentID"] as? Int32
+        student.studentID = dict["studentID"] as? Int
         student.imageProfile = dict["imageProfile"] as? String
         return student
     }

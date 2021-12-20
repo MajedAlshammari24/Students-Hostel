@@ -12,7 +12,7 @@ class ServicesDescriptionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cellView.layer.cornerRadius = 60
+        cellView.layer.cornerRadius = bounds.height/2
         cellView.layer.masksToBounds = true
     }
 
@@ -22,3 +22,4 @@ class ServicesDescriptionCell: UITableViewCell {
     }
 
 }
+

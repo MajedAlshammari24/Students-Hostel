@@ -76,9 +76,7 @@ class RoomsSelection: UIViewController {
                     let roomName = rooms.name
                     let price = rooms.price
                     let status = "Pending"
-                    Reservation.addReservation(uid: uid ?? "", roomName: roomName ?? "", price: price ?? "", status: status) { reserve in
-                        
-                    }
+                    Reservation.addReservation(uid: uid ?? "", roomName: roomName ?? "", price: price ?? "", status: status)
                 }
             
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)

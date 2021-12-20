@@ -10,7 +10,6 @@ import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
 class ProfileVC: UIViewController {
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var mobileLabel: UILabel!
@@ -18,22 +17,24 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
 
-    
-    
-    
+    var activityIndicatorContainer: UIActivityIndicatorView!
+
     var selfimageurl : String?
+
     
+    var acivityIndicator : UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
-//        activityIndicator.center = view.center
-//        activityIndicator.hidesWhenStopped = false
-//        view.addSubview(activityIndicator)
+        
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
-//        Indicator.start(view: self.view, activityIndicator: self.activityIn, isUserInteractionEnabled: false)
+        
+
+        showSpinner()
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
-//            Indicator.stop(view: self.view, activityIndicator: self.activityView)
+
+            self.removeSpinner()
+            
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
             self.mobileLabel.text = student.mobileNumber
@@ -44,11 +45,9 @@ class ProfileVC: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
+ 
 
-    
+ 
     
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
@@ -114,8 +113,10 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         }
     }
     
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
 }
+
