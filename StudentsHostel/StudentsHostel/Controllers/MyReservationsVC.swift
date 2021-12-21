@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 class MyReservationsVC: UIViewController {
 
     @IBOutlet weak var reserveStatusLabel: UILabel!
@@ -15,6 +16,8 @@ class MyReservationsVC: UIViewController {
         Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status in
             self.reserveStatusLabel.text = status.roomName
         }
+        
+        
 //        reserveStatusLabel.text = "You haven't made reserve yet!"
     }
     

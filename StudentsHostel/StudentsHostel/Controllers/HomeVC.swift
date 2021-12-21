@@ -17,7 +17,9 @@ class HomeVC: UIViewController {
     
     var selectedRoomsType: Rooms?
     var requestArray = [Rooms]()
-    var arrayOfImages : HomeImages?
+    // var arrayOfImages : HomeImages?
+    
+    var imagesDownloaded:[UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +30,37 @@ class HomeVC: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        HomeImagesApi.getHomeImage { photos in
-            DispatchQueue.main.async {
-                self.arrayOfImages = photos
-                self.collectionView.reloadData()
-                self.removeSpinner()
-
-            }
-        }
+        homeImagesDownload()
         setDelegate()
-        startTimer()
+        
         view.backgroundColor = .systemBackground
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startTimer()
+    }
+    
+    func homeImagesDownload() {
+        HomeImagesApi.getHomeImage { photos in
+            DispatchQueue.main.async {
+                let arrImages = photos.homeImages
+                guard let arrImages = arrImages else {return}
+                for arry in arrImages {
+                    guard let url = URL(string: arry) else {return}
+                    do {
+                        let data = try Data(contentsOf: url)
+                        self.imagesDownloaded.append(UIImage(data: data)!)
+                        self.collectionView.reloadData()
+                        self.removeSpinner()
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    
     
     func setDelegate(){
         tableView.delegate = self
@@ -54,7 +75,7 @@ class HomeVC: UIViewController {
     }
     
     @objc func moveToNextIndex() {
-        if currentCellIndex < (arrayOfImages?.homeImages?.count ?? 0) - 1 {
+        if currentCellIndex < (imagesDownloaded.count) - 1 {
             currentCellIndex += 1
         }
         else {
@@ -62,6 +83,11 @@ class HomeVC: UIViewController {
         }
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        DispatchQueue.main.async {
+    //
+    //        }
+    //    }
     
 }
 
@@ -97,21 +123,16 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayOfImages?.homeImages?.count ?? 0
+        //        count = arrayOfImages?.homeImages?.count
+        return imagesDownloaded.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HomePageImagesCell else { return UICollectionViewCell()}
         
-        guard let arrImages = arrayOfImages?.homeImages?[indexPath.row] else { return UICollectionViewCell()}
+        cell.imageView.image = imagesDownloaded[indexPath.row]
         
-        guard let url = URL(string: arrImages) else {return UICollectionViewCell()}
         
-        if let data = try? Data(contentsOf: url) {
-            DispatchQueue.main.async {
-                cell.imageView.image = UIImage(data: data)
-            }
-        }
         return cell
     }
     

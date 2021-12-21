@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import SwiftUI
 class ProfileVC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -32,9 +31,7 @@ class ProfileVC: UIViewController {
 
         showSpinner()
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
-
             self.removeSpinner()
-            
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
             self.mobileLabel.text = student.mobileNumber
@@ -47,7 +44,11 @@ class ProfileVC: UIViewController {
     
  
 
- 
+    @IBAction func imagePickerButton(_ sender: UIButton) {
+        self.photoPickAlert()
+
+    }
+    
     
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
@@ -56,9 +57,7 @@ class ProfileVC: UIViewController {
         }
     }
     
-    @IBAction func didTapImage(_ sender: UITapGestureRecognizer) {
-        self.photoPickAlert()
-    }
+   
     
     @IBAction func logOutButton(_ sender: UIButton) {
         try! Auth.auth().signOut()

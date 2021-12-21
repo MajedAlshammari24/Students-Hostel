@@ -5,6 +5,7 @@
 //  Created by Majed Alshammari on 04/05/1443 AH.
 //
 import FirebaseAuth
+import FirebaseFirestore
 import UIKit
 
 class RoomsSelection: UIViewController {
@@ -16,8 +17,11 @@ class RoomsSelection: UIViewController {
     var setArrayImages: Rooms?
     var timer: Timer?
     var currentCellIndex = 0
+    var downloadedImages : [UIImage] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setArrayImages = arrayImages
@@ -41,10 +45,13 @@ class RoomsSelection: UIViewController {
                 sender.setImage(UIImage(systemName: "app"), for: .normal)
             }
         }
+    }
+    
+    
+    func roomsImagesDownload() {
         
         
     }
-    
     
     
     func startTimer(){
@@ -70,14 +77,10 @@ class RoomsSelection: UIViewController {
             termsAlert()
             
         } else {
-            RoomsApi
-                .getRooms { rooms in
-                    let uid = Auth.auth().currentUser?.uid
-                    let roomName = rooms.name
-                    let price = rooms.price
-                    let status = "Pending"
-                    Reservation.addReservation(uid: uid ?? "", roomName: roomName ?? "", price: price ?? "", status: status)
-                }
+            
+                let roomStatus = "Pending"
+            Reservation.addReservation(uid: Auth.auth().currentUser?.uid ?? "", roomName: setArrayImages?.name ?? "", price: setArrayImages?.price ?? "", status: roomStatus)
+            
             
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
         }
