@@ -28,9 +28,9 @@ class ProfileVC: UIViewController {
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         
-
         showSpinner()
-        StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
+        StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") {
+            student in
             self.removeSpinner()
             self.nameLabel.text = student.name
             self.emailLabel.text = student.email
@@ -44,12 +44,12 @@ class ProfileVC: UIViewController {
     
  
 
-    @IBAction func imagePickerButton(_ sender: UIButton) {
+    @IBAction func imageProfileButton(_ sender: UIButton) {
         self.photoPickAlert()
-
     }
     
     
+      
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
         if let data = try? Data(contentsOf: url) {

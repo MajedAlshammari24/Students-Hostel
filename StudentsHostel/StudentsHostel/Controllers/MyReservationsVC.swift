@@ -13,12 +13,16 @@ class MyReservationsVC: UIViewController {
     @IBOutlet weak var reserveStatusLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status in
-            self.reserveStatusLabel.text = status.roomName
+        if check == true {
+            Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status in
+                self.reserveStatusLabel.text = status.roomName
+            }
+        } else {
+            reserveStatusLabel.text = "You haven't reserve a room yet!"
         }
         
         
-//        reserveStatusLabel.text = "You haven't made reserve yet!"
+        
     }
     
 

@@ -31,7 +31,7 @@ class HomeVC: UIViewController {
             }
         }
         homeImagesDownload()
-        setDelegate()
+        
         
         view.backgroundColor = .systemBackground
     }
@@ -57,6 +57,8 @@ class HomeVC: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
+                
+                self.setDelegate()
             }
         }
     }
@@ -143,4 +145,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollect
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    
 }

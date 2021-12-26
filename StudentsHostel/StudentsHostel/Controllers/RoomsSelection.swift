@@ -7,11 +7,15 @@
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
-
+public var check : Bool?
 class RoomsSelection: UIViewController {
     
     @IBOutlet weak var checkBoxButton: UIButton!
-    @IBOutlet weak var roomDescription: UILabel!
+    
+    @IBOutlet weak var roomName: UILabel!
+    @IBOutlet weak var roomType: UILabel!
+    @IBOutlet weak var bedType: UILabel!
+    @IBOutlet weak var bathroomType: UILabel!
     @IBOutlet weak var roomPrice: UILabel!
     var arrayImages: Rooms?
     var setArrayImages: Rooms?
@@ -25,11 +29,15 @@ class RoomsSelection: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setArrayImages = arrayImages
+        roomsImagesDownload()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
         startTimer()
-        roomDescription.text = arrayImages?.description
+        roomName.text = arrayImages?.roomName
+        roomType.text = arrayImages?.roomType
+        bedType.text = arrayImages?.bedType
+        bathroomType.text = arrayImages?.bathroomType
         roomPrice.text = arrayImages?.price
         checkBoxButton.setImage(UIImage(systemName: "app"), for: .normal)
         
@@ -48,10 +56,7 @@ class RoomsSelection: UIViewController {
     }
     
     
-    func roomsImagesDownload() {
-        
-        
-    }
+    
     
     
     func startTimer(){
@@ -75,7 +80,7 @@ class RoomsSelection: UIViewController {
     @IBAction func reserveCompletion(_ sender: UIButton) {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
             termsAlert()
-            
+            check = false
         } else {
             
                 let roomStatus = "Pending"
@@ -83,6 +88,7 @@ class RoomsSelection: UIViewController {
             
             
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
+            check = true
         }
     }
     
@@ -99,23 +105,28 @@ class RoomsSelection: UIViewController {
 }
 
 
-
 extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-    
+    func roomsImagesDownload() {
+        guard let arrayImages = setArrayImages?.images else { return }
+        for arrayImage in arrayImages {
+            guard let url = URL(string: arrayImage) else { return }
+            if let data = try? Data(contentsOf: url) {
+                self.downloadedImages.append(UIImage(data: data) ?? UIImage())
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return setArrayImages?.images?.count ?? 0
+        return downloadedImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
         
-        guard let arrayImages = setArrayImages?.images?[indexPath.row] else { return UICollectionViewCell() }
-        guard let url = URL(string: arrayImages) else { return UICollectionViewCell() }
-        if let data = try? Data(contentsOf: url) {
-            cell.roomsImageView.image = UIImage(data: data)
-        }
+        cell.roomsImageView.image = downloadedImages[indexPath.row]
         return cell
     }
     

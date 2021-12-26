@@ -11,7 +11,10 @@ import FirebaseFirestore
 class Rooms {
     var images: [String]?
     var name: String?
-    var description: String?
+    var roomName: String?
+    var roomType: String?
+    var bedType: String?
+    var bathroomType: String?
     var price: String?
 }
 
@@ -21,7 +24,10 @@ extension Rooms {
         let rooms = Rooms()
         rooms.images = dict["images"] as? [String]
         rooms.name = dict["name"] as? String
-        rooms.description = dict["description"] as? String
+        rooms.roomName = dict["roomName"] as? String
+        rooms.roomType = dict["roomType"] as? String
+        rooms.bedType = dict["bedType"] as? String
+        rooms.bathroomType = dict["bathroomType"] as? String
         rooms.price = dict["price"] as? String
         return rooms
     }
@@ -30,7 +36,6 @@ extension Rooms {
 class RoomsApi {
     
     static func getRooms(completion: @escaping (Rooms) -> Void) {
-        
         
         let refRooms = Firestore.firestore().collection("Rooms")
         refRooms.getDocuments { documents, error in

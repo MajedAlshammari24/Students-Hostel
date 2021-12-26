@@ -16,4 +16,5 @@ class HomePageImagesCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
     }
+    
 }

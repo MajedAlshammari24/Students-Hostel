@@ -11,7 +11,7 @@
 		842891CD2760A2EB00D3DC27 /* RoomsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */; };
 		842891CF2760C78B00D3DC27 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891CE2760C78B00D3DC27 /* Enums.swift */; };
 		842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D02760E69500D3DC27 /* RoomsImages.swift */; };
-		842891D32760EE5700D3DC27 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D22760EE5700D3DC27 /* Structs.swift */; };
+		842891D32760EE5700D3DC27 /* Structs&Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D22760EE5700D3DC27 /* Structs&Arrays.swift */; };
 		842891D52761EC9400D3DC27 /* StudentsProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D42761EC9400D3DC27 /* StudentsProfiles.swift */; };
 		842891D72761F21A00D3DC27 /* StudentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D62761F21A00D3DC27 /* StudentApi.swift */; };
 		842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D8276394DC00D3DC27 /* RoomsApi.swift */; };
@@ -48,7 +48,7 @@
 		842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsSelection.swift; sourceTree = "<group>"; };
 		842891CE2760C78B00D3DC27 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		842891D02760E69500D3DC27 /* RoomsImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsImages.swift; sourceTree = "<group>"; };
-		842891D22760EE5700D3DC27 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		842891D22760EE5700D3DC27 /* Structs&Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Structs&Arrays.swift"; sourceTree = "<group>"; };
 		842891D42761EC9400D3DC27 /* StudentsProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsProfiles.swift; sourceTree = "<group>"; };
 		842891D62761F21A00D3DC27 /* StudentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentApi.swift; sourceTree = "<group>"; };
 		842891D8276394DC00D3DC27 /* RoomsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsApi.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			children = (
 				843CACEA275F9169001A8B58 /* Extensions.swift */,
 				842891CE2760C78B00D3DC27 /* Enums.swift */,
-				842891D22760EE5700D3DC27 /* Structs.swift */,
+				842891D22760EE5700D3DC27 /* Structs&Arrays.swift */,
 				842891D42761EC9400D3DC27 /* StudentsProfiles.swift */,
 				842891D62761F21A00D3DC27 /* StudentApi.swift */,
 				842891D8276394DC00D3DC27 /* RoomsApi.swift */,
@@ -281,7 +281,7 @@
 				843CACC1275F6AFA001A8B58 /* SceneDelegate.swift in Sources */,
 				840760F6276F10E7009108F0 /* ReserveStatusApi.swift in Sources */,
 				842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */,
-				842891D32760EE5700D3DC27 /* Structs.swift in Sources */,
+				842891D32760EE5700D3DC27 /* Structs&Arrays.swift in Sources */,
 				842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */,
 				84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */,
 				843CACEB275F9169001A8B58 /* Extensions.swift in Sources */,
