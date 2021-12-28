@@ -23,7 +23,6 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         createPicker()
         dismissPickerView()
-        
     }
     
     func signUp(name:String, email: String, password: String, studentID: Int32, mobileNumber:String, city: String) {

@@ -10,6 +10,7 @@ import UIKit
 class ServicesCell: UITableViewCell {
 
     @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var serviceDescription: UILabel!
     @IBOutlet weak var serviceImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

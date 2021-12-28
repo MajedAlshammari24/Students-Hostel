@@ -8,20 +8,20 @@
 import Foundation
 import UIKit
 
-var aView : UIView?
+var spinnerView : UIView?
 extension UIViewController {
     func showSpinner() {
-        aView = UIView(frame: self.view.bounds)
-        aView?.backgroundColor = UIColor(named: "AdaptiveColor")
-        let ai = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        ai.center = aView!.center
-        ai.startAnimating()
-        aView?.addSubview(ai)
-        self.view.addSubview(aView!)
+        spinnerView = UIView(frame: self.view.bounds)
+        spinnerView?.backgroundColor = UIColor(named: "AdaptiveColor")
+        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        activityIndicator.center = spinnerView!.center
+        activityIndicator.startAnimating()
+        spinnerView?.addSubview(activityIndicator)
+        self.view.addSubview(spinnerView!)
     }
     func removeSpinner() {
-        aView?.removeFromSuperview()
-        aView = nil
+        spinnerView?.removeFromSuperview()
+        spinnerView = nil
     }
 }
 
@@ -32,7 +32,11 @@ extension UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
        present(alert, animated: true, completion: nil)
     }
+    
+    
 }
+
+
 
 
 

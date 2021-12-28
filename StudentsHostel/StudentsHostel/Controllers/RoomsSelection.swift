@@ -79,16 +79,17 @@ class RoomsSelection: UIViewController {
     
     @IBAction func reserveCompletion(_ sender: UIButton) {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
-            termsAlert()
             check = false
-        } else {
+            termsAlert()
             
+        } else {
+            check = true
                 let roomStatus = "Pending"
             Reservation.addReservation(uid: Auth.auth().currentUser?.uid ?? "", roomName: setArrayImages?.name ?? "", price: setArrayImages?.price ?? "", status: roomStatus)
             
             
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
-            check = true
+            
         }
     }
     

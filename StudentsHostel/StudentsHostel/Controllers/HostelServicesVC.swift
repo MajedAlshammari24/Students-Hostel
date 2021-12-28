@@ -17,10 +17,10 @@ class HostelServicesVC: UIViewController {
         super.viewDidLoad()
         showSpinner()
         ServicesApi.getServices { services in
-            self.removeSpinner()
             DispatchQueue.main.async {
                 self.requestArray.append(services)
                 self.tableView.reloadData()
+                self.removeSpinner()
             }
         }
         tableView.delegate = self
@@ -41,7 +41,7 @@ extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ServicesCell else { return UITableViewCell()}
         cell.serviceLabel.text = requestArray[indexPath.row].name
-        
+        cell.serviceDescription.text = requestArray[indexPath.row].description
         guard let images = requestArray[indexPath.row].image else { return UITableViewCell()}
         guard let url = URL(string: images) else { return UITableViewCell()}
         DispatchQueue.main.async {

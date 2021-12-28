@@ -17,8 +17,6 @@ class HomeVC: UIViewController {
     
     var selectedRoomsType: Rooms?
     var requestArray = [Rooms]()
-    // var arrayOfImages : HomeImages?
-    
     var imagesDownloaded:[UIImage] = []
     
     override func viewDidLoad() {
@@ -32,8 +30,6 @@ class HomeVC: UIViewController {
         }
         homeImagesDownload()
         
-        
-        view.backgroundColor = .systemBackground
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,8 +42,8 @@ class HomeVC: UIViewController {
             DispatchQueue.main.async {
                 let arrImages = photos.homeImages
                 guard let arrImages = arrImages else {return}
-                for arry in arrImages {
-                    guard let url = URL(string: arry) else {return}
+                for imagesUrl in arrImages {
+                    guard let url = URL(string: imagesUrl) else {return}
                     do {
                         let data = try Data(contentsOf: url)
                         self.imagesDownloaded.append(UIImage(data: data)!)
@@ -85,11 +81,7 @@ class HomeVC: UIViewController {
         }
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        DispatchQueue.main.async {
-    //
-    //        }
-    //    }
+    
     
 }
 
@@ -125,7 +117,6 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //        count = arrayOfImages?.homeImages?.count
         return imagesDownloaded.count
     }
     

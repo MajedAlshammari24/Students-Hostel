@@ -11,7 +11,7 @@ import FirebaseFirestore
 class Services {
     var image: String?
     var name: String?
-    
+    var description:String?
 }
 
 extension Services {
@@ -20,6 +20,7 @@ extension Services {
         let services = Services()
         services.image = dic["image"] as? String
         services.name = dic["name"] as? String
+        services.description = dic["description"] as? String
         return services
     }
 }

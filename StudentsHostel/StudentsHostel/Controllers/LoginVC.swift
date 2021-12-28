@@ -11,16 +11,32 @@ class LoginVC: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var autoLoginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        autoLoginButton.setImage(UIImage(systemName: "app"), for: .normal)
     }
     
    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        autoLogin()
+    }
+    
+    func autoLogin() {
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
+
+        }
+    }
+   
+    
+    @IBAction func autoLoginCheckBox(_ sender: UIButton) {
+        if sender.image(for: .normal) == UIImage(systemName:"app") {
+            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            
+        } else {
+            sender.setImage(UIImage(systemName: "app"), for: .normal)
         }
     }
     
@@ -39,6 +55,7 @@ class LoginVC: UIViewController {
     
     @IBAction func loginButton(_ sender: UIButton) {
         signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+        
     }
     
     

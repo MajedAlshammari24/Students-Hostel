@@ -57,17 +57,27 @@ class ProfileVC: UIViewController {
         }
     }
     
-   
+    @IBAction func modeSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
     
     @IBAction func logOutButton(_ sender: UIButton) {
         try! Auth.auth().signOut()
         
-        performSegue(withIdentifier: "loginVC", sender: nil)
-        //        if let storyboard = self.storyboard {
-        //            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
-        //            vc.presentationController?.presentationStyle = .fullScreen
-        //            self.present(vc, animated: true, completion: nil)
-        //        }
+//        performSegue(withIdentifier: "loginVC", sender: nil)
+                if let storyboard = self.storyboard {
+                    let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
     }
     
 }

@@ -11,15 +11,16 @@ import FirebaseFirestore
 class MyReservationsVC: UIViewController {
 
     @IBOutlet weak var reserveStatusLabel: UILabel!
+    @IBOutlet weak var reserveRoomLabel: UILabel!
+    @IBOutlet weak var reservePriceLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if check == true {
             Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status in
-                self.reserveStatusLabel.text = status.roomName
+                self.reserveRoomLabel.text = status.roomName
+                self.reservePriceLabel.text = status.price
+                self.reserveStatusLabel.text = status.status
             }
-        } else {
-            reserveStatusLabel.text = "You haven't reserve a room yet!"
-        }
+       
         
         
         
