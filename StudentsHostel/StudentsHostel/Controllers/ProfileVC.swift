@@ -72,12 +72,11 @@ class ProfileVC: UIViewController {
     @IBAction func logOutButton(_ sender: UIButton) {
         try! Auth.auth().signOut()
         
-//        performSegue(withIdentifier: "loginVC", sender: nil)
-                if let storyboard = self.storyboard {
-                    let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true, completion: nil)
-                }
+        if let storyboard = self.storyboard {
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
 }

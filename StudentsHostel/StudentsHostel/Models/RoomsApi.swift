@@ -16,6 +16,7 @@ class Rooms {
     var bedType: String?
     var bathroomType: String?
     var price: String?
+    var roomShow: String?
 }
 
 extension Rooms {
@@ -29,6 +30,7 @@ extension Rooms {
         rooms.bedType = dict["bedType"] as? String
         rooms.bathroomType = dict["bathroomType"] as? String
         rooms.price = dict["price"] as? String
+        rooms.roomShow = dict["roomShow"] as? String
         return rooms
     }
 }

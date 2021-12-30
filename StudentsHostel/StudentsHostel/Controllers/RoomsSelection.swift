@@ -17,6 +17,7 @@ class RoomsSelection: UIViewController {
     @IBOutlet weak var bedType: UILabel!
     @IBOutlet weak var bathroomType: UILabel!
     @IBOutlet weak var roomPrice: UILabel!
+    @IBOutlet weak var roomSelectionView: UIImageView!
     var arrayImages: Rooms?
     var setArrayImages: Rooms?
     var timer: Timer?
@@ -28,6 +29,7 @@ class RoomsSelection: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        roomSelectionView.layer.cornerRadius = 20
         setArrayImages = arrayImages
         roomsImagesDownload()
         collectionView.delegate = self
@@ -74,6 +76,12 @@ class RoomsSelection: UIViewController {
     }
     
     
+    @IBAction func readTerms(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "Terms") as! TermsAndConditionsViewController
+        present(vc, animated: true)
+        
+        
+    }
     
     
     

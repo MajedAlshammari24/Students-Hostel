@@ -18,7 +18,7 @@ class HomeVC: UIViewController {
     var selectedRoomsType: Rooms?
     var requestArray = [Rooms]()
     var imagesDownloaded:[UIImage] = []
-    
+    var roomsShowImage:[UIImage] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         showSpinner()
@@ -29,37 +29,48 @@ class HomeVC: UIViewController {
             }
         }
         homeImagesDownload()
-        
+        downloadRoomShow()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.setDelegate()
         self.startTimer()
     }
     
     func homeImagesDownload() {
         HomeImagesApi.getHomeImage { photos in
-            DispatchQueue.main.async {
-                let arrImages = photos.homeImages
-                guard let arrImages = arrImages else {return}
-                for imagesUrl in arrImages {
-                    guard let url = URL(string: imagesUrl) else {return}
-                    do {
-                        let data = try Data(contentsOf: url)
+            
+            let arrImages = photos.homeImages
+            guard let arrImages = arrImages else {return}
+            for imagesUrl in arrImages {
+                guard let url = URL(string: imagesUrl) else {return}
+                do {
+                    let data = try Data(contentsOf: url)
+                    DispatchQueue.main.async {
                         self.imagesDownloaded.append(UIImage(data: data)!)
                         self.collectionView.reloadData()
                         self.removeSpinner()
-                    } catch let error {
-                        print(error.localizedDescription)
                     }
+                } catch let error {
+                    print(error.localizedDescription)
                 }
-                
-                self.setDelegate()
             }
+            
+            
         }
     }
     
-    
+    func downloadRoomShow(){
+        RoomsApi.getRooms { room in
+            let roomShow = room.roomShow
+            guard let url = URL(string: roomShow!) else { return }
+            if let data = try? Data(contentsOf: url) {
+                self.roomsShowImage.append(UIImage(data: data)!)
+                self.tableView.reloadData()
+            }
+        }
+    }
     func setDelegate(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -73,13 +84,14 @@ class HomeVC: UIViewController {
     }
     
     @objc func moveToNextIndex() {
-        if currentCellIndex < (imagesDownloaded.count) - 1 {
-            currentCellIndex += 1
-        }
-        else {
+        currentCellIndex += 1
+        if currentCellIndex > imagesDownloaded.count - 1 {
             currentCellIndex = 0
         }
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        
+        if !imagesDownloaded.isEmpty {
+            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
     
     
@@ -101,7 +113,15 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RoomsCells else { return UITableViewCell()}
-        cell.roomTypeLabel.text = requestArray[indexPath.row].name
+        cell.cellView.layer.shadowColor = UIColor.gray.cgColor
+        cell.cellView.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        cell.cellView.layer.shadowOpacity = 2.0
+        cell.cellView.layer.masksToBounds = false
+        cell.cellView.layer.cornerRadius = 12.0
+        cell.roomName.text = requestArray[indexPath.row].name
+        cell.roomPrice.text = requestArray[indexPath.row].price
+        cell.roomImage.image = roomsShowImage[indexPath.row]
+        
         return cell
     }
     
