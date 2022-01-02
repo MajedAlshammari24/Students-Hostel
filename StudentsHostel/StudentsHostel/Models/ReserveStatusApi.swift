@@ -40,14 +40,16 @@ extension Reservation {
     }
     
     
-    static func getStatus(uid:String,completion: @escaping (Reservation) -> Void) {
+    static func getStatus(uid:String,completion: @escaping (Reservation?,Error?) -> Void) {
         
         let refStatus = Firestore.firestore().collection("Reservations")
         
         refStatus.document(uid).getDocument { document, error in
             if let document = document, document.exists {
                 let status = Reservation.getReservation(dict: document.data()!)
-                completion(status)
+                completion(status,nil)
+            } else {
+                completion(nil,error)
             }
         }
     }

@@ -8,16 +8,18 @@
 import UIKit
 import FirebaseAuth
 class LoginVC: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var autoLoginButton: UIButton!
+    var rememberMeClick = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        rememberMeCheck()
         autoLoginButton.setImage(UIImage(systemName: "app"), for: .normal)
     }
     
-   
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         autoLogin()
@@ -26,17 +28,23 @@ class LoginVC: UIViewController {
     func autoLogin() {
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
-
+            
         }
     }
-   
+    
     
     @IBAction func autoLoginCheckBox(_ sender: UIButton) {
-        if sender.image(for: .normal) == UIImage(systemName:"app") {
-            sender.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        if (rememberMeClick == false) {
+            if let image = UIImage(systemName: "checkmark.square") {
+                autoLoginButton.setBackgroundImage(image, for: .normal)
+            }
+            rememberMeClick = true
             
         } else {
-            sender.setImage(UIImage(systemName: "app"), for: .normal)
+            if let image = UIImage(systemName: "app") {
+                autoLoginButton.setBackgroundImage(image, for: .normal)
+            }
+            rememberMeClick = false
         }
     }
     
@@ -55,9 +63,30 @@ class LoginVC: UIViewController {
     
     @IBAction func loginButton(_ sender: UIButton) {
         signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
-        
+        if (rememberMeClick == true) {
+            UserDefaults.standard.set("save", forKey: "rememberMe")
+            UserDefaults.standard.set(emailTextField.text, forKey: "email")
+            UserDefaults.standard.set(passwordTextField.text, forKey: "password")
+        } else {
+            UserDefaults.standard.set("unsave", forKey: "rememberMe")
+        }
     }
     
+    func rememberMeCheck() {
+        if UserDefaults.standard.string(forKey: "rememberMe") == "save" {
+            if let image = UIImage(systemName: "checkmark.square") {
+                autoLoginButton.setBackgroundImage(image, for: .normal)
+            }
+            rememberMeClick = true
+            emailTextField.text = UserDefaults.standard.string(forKey: "email")
+            passwordTextField.text = UserDefaults.standard.string(forKey: "password")
+        } else {
+            if let image = UIImage(systemName: "app") {
+                autoLoginButton.setBackgroundImage(image, for: .normal)
+            }
+            rememberMeClick = false
+        }
+    }
     
     @IBAction func goToRegisterButton(_ sender: UIButton) {
         performSegue(withIdentifier: Identifier.register.rawValue, sender: nil)

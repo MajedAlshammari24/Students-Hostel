@@ -318,7 +318,7 @@
                                     <constraint firstAttribute="height" constant="454" id="M0M-MN-Rvr"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="151" id="0BR-kZ-JN8" customClass="RoomsCells" customModule="StudentsHostel" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="151" id="0BR-kZ-JN8" customClass="RoomsCells" customModule="StudentsHostel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0BR-kZ-JN8" id="YKx-FE-fdB">
@@ -1249,6 +1249,11 @@
                                     <action selector="modeSwitch:" destination="s2E-9m-TRu" eventType="valueChanged" id="R11-v9-DmR"/>
                                 </connections>
                             </switch>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="LZF-DN-W4f">
+                            <connections>
+                                <action selector="updateProfileInfo:" destination="s2E-9m-TRu" id="poh-6k-Wp2"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

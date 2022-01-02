@@ -43,6 +43,16 @@ extension Student {
         return newStudent
         
     }
+    
+    static func updateInfo(name:String,email:String,mobileNumber:String) -> [String: Any] {
+        
+        let newStudent = ["name":name,
+                          "email":email,
+                          "mobileNumber":mobileNumber,
+                         ] as [String : Any]
+        return newStudent
+        
+    }
     static func putImageProfile(imageProfileUrl:String) -> [String: Any] {
         
         let newStudent = ["imageProfile":imageProfileUrl

@@ -16,6 +16,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
 
+
     var activityIndicatorContainer: UIActivityIndicatorView!
 
     var selfimageurl : String?
@@ -42,14 +43,53 @@ class ProfileVC: UIViewController {
         }
     }
     
- 
 
+    fileprivate func updateStudentInfo() {
+        let alert = UIAlertController(title: "Update Profile", message: nil, preferredStyle:.alert)
+        
+        alert.addTextField(configurationHandler: { textField1 in
+            textField1.placeholder = "Name..."
+        })
+        alert.addTextField(configurationHandler: { textField2 in
+            textField2.placeholder = "Email..."
+            textField2.keyboardType = .emailAddress
+        })
+        alert.addTextField(configurationHandler: { textField3 in
+            textField3.placeholder = "Mobile Number..."
+            textField3.keyboardType = .numberPad
+        })
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+            if let studentName = alert.textFields?[0].text,
+               let studentEmail = alert.textFields?[1].text,
+               let studentMobile = alert.textFields?[2].text {
+                Auth.auth().currentUser?.updateEmail(to: studentEmail, completion: { error in
+                    if let error = error {
+                        print("Something went wrong\(error)")
+                    } else {
+                        StudentApi.updateInfo(uid: Auth.auth().currentUser?.uid ?? "", name: studentName, email: studentEmail, mobileNumber: studentMobile)
+                        
+                    }
+                    
+                })
+            }
+            self.logOutAlert()
+        }))
+        self.present(alert, animated: true)
+    }
+    
+
+  
+    
     @IBAction func imageProfileButton(_ sender: UIButton) {
         self.photoPickAlert()
     }
     
     
-      
+    @IBAction func updateProfileInfo(_ sender: UIBarButtonItem) {
+        updateStudentInfo()
+    }
+    
+    
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
         if let data = try? Data(contentsOf: url) {
