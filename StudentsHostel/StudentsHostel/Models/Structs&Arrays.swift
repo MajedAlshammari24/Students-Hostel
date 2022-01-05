@@ -11,6 +11,8 @@ import UIKit
 
 let cities = ["","Abha","Buraydah","AlBahah","Buq a","Dammam","Dhahran","Dumat Al-Jandal","Dawadmi","Hotat Bani Tamim","Hofuf","Hafr Al-Batin","Jeddah","Khafji","Khamis Mushait","Khobar","Al Majma'ah","Medina","Mecca","Qatif","Qurayyat","Rabegh","Rafha","Taif","Tabuk","Yanbu"]
 
+let textString = ["Email","Mobile","StudentID","City"]
+
 
 let presentRoomsImages = [UIImage(named: "ShowStandardSingle"),UIImage(named: "ShowDeluxeSingle"),UIImage(named: "ShowStandardTwin"),UIImage(named: "ShowDeluxeTwin")]
 //func downloadImages() {

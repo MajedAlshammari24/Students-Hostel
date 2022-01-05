@@ -1,46 +1,65 @@
 //
-//  ProfileVC.swift
+//  ProfileTableViewVC.swift
 //  StudentsHostel
 //
-//  Created by Majed Alshammari on 03/05/1443 AH.
+//  Created by Majed Alshammari on 02/06/1443 AH.
 //
 
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-class ProfileVC: UIViewController {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var mobileLabel: UILabel!
-    @IBOutlet weak var studentIDLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
+class ProfileTableViewVC: UITableViewController {
 
-    
-    var activityIndicatorContainer: UIActivityIndicatorView!
-
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var studentName: UILabel!
+    @IBOutlet weak var studentEmail: UILabel!
+    @IBOutlet weak var studentPhone: UILabel!
+    @IBOutlet weak var studentID: UILabel!
+    @IBOutlet weak var studentCity: UILabel!
     var selfimageurl : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        profileImage.layer.masksToBounds = true
-        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         showSpinner()
-        StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") {
-            student in
+        StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
             self.removeSpinner()
-            self.nameLabel.text = student.name
-            self.emailLabel.text = student.email
-            self.mobileLabel.text = student.mobileNumber
+            self.studentName.text = student.name
+            self.studentEmail.text = student.email
+            self.studentPhone.text = student.mobileNumber
+            self.studentID.text = String(student.studentID ?? 0)
+            self.studentCity.text = student.city
             self.selfimageurl = student.imageProfile
             self.saveImageProfile()
-            self.studentIDLabel.text = "\(student.studentID ?? 0)"
-            self.cityLabel.text = student.city
+        }
+    }
+
+    
+    
+    private func saveImageProfile() {
+        guard let url = URL(string: self.selfimageurl ?? "") else {return}
+        if let data = try? Data(contentsOf: url) {
+            self.profileImageView.image = UIImage(data: data)
         }
     }
     
-
+    
+    @IBAction func setProfileImage(_ sender: UIButton) {
+        photoPickAlert()
+    }
+    
+    
+    @IBAction func logOutButton(_ sender: UIButton) {
+        try! Auth.auth().signOut()
+        
+        if let storyboard = self.storyboard {
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     fileprivate func updateStudentInfo() {
         let alert = UIAlertController(title: "Update Profile", message: nil, preferredStyle:.alert)
         
@@ -64,9 +83,7 @@ class ProfileVC: UIViewController {
                         print("Something went wrong\(error)")
                     } else {
                         StudentApi.updateInfo(uid: Auth.auth().currentUser?.uid ?? "", name: studentName, email: studentEmail, mobileNumber: studentMobile)
-                        
                     }
-                    
                 })
             }
             self.presentAlert(title: "Done", message:"Your information will change next login")
@@ -75,58 +92,28 @@ class ProfileVC: UIViewController {
         self.present(alert, animated: true)
     }
     
-
-  
     
-    @IBAction func imageProfileButton(_ sender: UIButton) {
-        self.photoPickAlert()
-    }
-    
-    
-    @IBAction func updateProfileInfo(_ sender: UIBarButtonItem) {
+    @IBAction func editStudentProfile(_ sender: UIBarButtonItem) {
         updateStudentInfo()
     }
     
-    
-    private func saveImageProfile() {
-        guard let url = URL(string: self.selfimageurl ?? "") else {return}
-        if let data = try? Data(contentsOf: url) {
-            self.profileImage.image = UIImage(data: data)
-        }
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
-    
-    @IBAction func modeSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            UIApplication.shared.windows.forEach { window in
-                window.overrideUserInterfaceStyle = .dark
-            }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
         } else {
-            UIApplication.shared.windows.forEach { window in
-                window.overrideUserInterfaceStyle = .light
-            }
+            return 5
         }
     }
-    
-    @IBAction func logOutButton(_ sender: UIButton) {
-        try! Auth.auth().signOut()
-        
-        if let storyboard = self.storyboard {
-            let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
-    
+
 }
 
-    
-    
-    
-    
-
-
-
-extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileTableViewVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     private func photoPickAlert() {
@@ -157,7 +144,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) { [weak self] in
             guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-            self?.profileImage.image = image
+            self?.profileImageView.image = image
             StudentApi.uploadStudentImage(studentImage: image) { check, url in
                 if check {
                     StudentApi.addImageProfile(uid: Auth.auth().currentUser?.uid ?? "", url: url ?? "")
@@ -172,4 +159,3 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     }
     
 }
-

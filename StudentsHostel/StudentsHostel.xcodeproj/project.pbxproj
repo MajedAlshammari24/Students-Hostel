@@ -36,9 +36,14 @@
 		843CACE9275F8F95001A8B58 /* RoomsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACE8275F8F94001A8B58 /* RoomsCells.swift */; };
 		843CACEB275F9169001A8B58 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACEA275F9169001A8B58 /* Extensions.swift */; };
 		843CACED27608588001A8B58 /* ServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843CACEC27608587001A8B58 /* ServicesCell.swift */; };
+		844801E827857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 844801E627857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf */; };
+		844801E927857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 844801E727857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf */; };
+		844801EE2785D19A00EED872 /* ProfileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844801ED2785D19A00EED872 /* ProfileTableView.swift */; };
+		844801F02785D96700EED872 /* ProfileTableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844801EF2785D96700EED872 /* ProfileTableViewVC.swift */; };
 		844A299C2769E47B00B6E024 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 844A299B2769E47B00B6E024 /* FirebaseStorage */; };
 		844A29A0276F068900B6E024 /* ServicesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A299F276F068900B6E024 /* ServicesDescription.swift */; };
 		844A29A2276F06FD00B6E024 /* ServicesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */; };
+		845779AA2781B2D200C428B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 845779A92781B2D200C428B4 /* Kingfisher */; };
 		84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */; };
 		84B1E237276F8FEF00D88F53 /* HomePageImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +77,13 @@
 		843CACE8275F8F94001A8B58 /* RoomsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCells.swift; sourceTree = "<group>"; };
 		843CACEA275F9169001A8B58 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		843CACEC27608587001A8B58 /* ServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesCell.swift; sourceTree = "<group>"; };
+		844801E627857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		844801E727857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		844801EA27857E1700EED872 /* Oswald-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		844801EB278580DF00EED872 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		844801EC2785867A00EED872 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		844801ED2785D19A00EED872 /* ProfileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableView.swift; sourceTree = "<group>"; };
+		844801EF2785D96700EED872 /* ProfileTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewVC.swift; sourceTree = "<group>"; };
 		844A299F276F068900B6E024 /* ServicesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescription.swift; sourceTree = "<group>"; };
 		844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescriptionCell.swift; sourceTree = "<group>"; };
 		84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImagesApi.swift; sourceTree = "<group>"; };
@@ -87,6 +99,7 @@
 				844A299C2769E47B00B6E024 /* FirebaseStorage in Frameworks */,
 				843CACD8275F6EA0001A8B58 /* FirebaseAuth in Frameworks */,
 				843CACDA275F6EA0001A8B58 /* FirebaseFirestore in Frameworks */,
+				845779AA2781B2D200C428B4 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +134,7 @@
 				843CACC4275F6AFA001A8B58 /* Main.storyboard */,
 				843CACC7275F6B01001A8B58 /* Assets.xcassets */,
 				843CACC9275F6B01001A8B58 /* LaunchScreen.storyboard */,
+				844801E527857DE100EED872 /* Fonts */,
 				843CACD2275F6D4E001A8B58 /* GoogleService-Info.plist */,
 				843CACCC275F6B01001A8B58 /* Info.plist */,
 			);
@@ -140,6 +154,8 @@
 				844A299F276F068900B6E024 /* ServicesDescription.swift */,
 				842891DE27688BCD00D3DC27 /* TermsAndConditionsViewController.swift */,
 				842891E027688C9300D3DC27 /* ConfirmReservation.swift */,
+				844801ED2785D19A00EED872 /* ProfileTableView.swift */,
+				844801EF2785D96700EED872 /* ProfileTableViewVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -172,6 +188,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		844801E527857DE100EED872 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				844801E727857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf */,
+				844801E627857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf */,
+				844801EC2785867A00EED872 /* Lato-BlackItalic.ttf */,
+				844801EB278580DF00EED872 /* Lato-Regular.ttf */,
+				844801EA27857E1700EED872 /* Oswald-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		844A299A2769E47B00B6E024 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +228,7 @@
 				843CACD7275F6EA0001A8B58 /* FirebaseAuth */,
 				843CACD9275F6EA0001A8B58 /* FirebaseFirestore */,
 				844A299B2769E47B00B6E024 /* FirebaseStorage */,
+				845779A92781B2D200C428B4 /* Kingfisher */,
 			);
 			productName = StudentsHostel;
 			productReference = 843CACBB275F6AFA001A8B58 /* StudentsHostel.app */;
@@ -231,6 +260,7 @@
 			mainGroup = 843CACB2275F6AF9001A8B58;
 			packageReferences = (
 				843CACD4275F6EA0001A8B58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				845779A82781B2D100C428B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 843CACBC275F6AFA001A8B58 /* Products */;
 			projectDirPath = "";
@@ -246,8 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844801E927857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf in Resources */,
 				843CACCB275F6B01001A8B58 /* LaunchScreen.storyboard in Resources */,
 				843CACD3275F6D4E001A8B58 /* GoogleService-Info.plist in Resources */,
+				844801E827857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf in Resources */,
 				843CACC8275F6B01001A8B58 /* Assets.xcassets in Resources */,
 				843CACC6275F6AFA001A8B58 /* Main.storyboard in Resources */,
 			);
@@ -264,6 +296,7 @@
 				843CACE3275F8B3B001A8B58 /* ProfileVC.swift in Sources */,
 				843CACC3275F6AFA001A8B58 /* LoginVC.swift in Sources */,
 				843CACE1275F7156001A8B58 /* HomeVC.swift in Sources */,
+				844801F02785D96700EED872 /* ProfileTableViewVC.swift in Sources */,
 				843CACDF275F70F0001A8B58 /* RegisterVC.swift in Sources */,
 				842891DF27688BCE00D3DC27 /* TermsAndConditionsViewController.swift in Sources */,
 				843CACED27608588001A8B58 /* ServicesCell.swift in Sources */,
@@ -273,6 +306,7 @@
 				842891DB27671CF700D3DC27 /* ServicesApi.swift in Sources */,
 				843CACE9275F8F95001A8B58 /* RoomsCells.swift in Sources */,
 				842891CF2760C78B00D3DC27 /* Enums.swift in Sources */,
+				844801EE2785D19A00EED872 /* ProfileTableView.swift in Sources */,
 				844A29A0276F068900B6E024 /* ServicesDescription.swift in Sources */,
 				843CACBF275F6AFA001A8B58 /* AppDelegate.swift in Sources */,
 				843CACE7275F8B6A001A8B58 /* HostelServicesVC.swift in Sources */,
@@ -432,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU6BDXSL6Y;
@@ -450,6 +485,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.local.StudentsHostel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -461,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YU6BDXSL6Y;
@@ -479,6 +516,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.local.StudentsHostel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -517,6 +555,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		845779A82781B2D100C428B4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -539,6 +585,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 843CACD4275F6EA0001A8B58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		845779A92781B2D200C428B4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845779A82781B2D100C428B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

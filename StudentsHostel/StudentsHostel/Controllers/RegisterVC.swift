@@ -23,7 +23,17 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         createPicker()
         dismissPickerView()
+//        let tap = UIGestureRecognizer(target: self, action: #selector(dismissTap))
+//        view.addGestureRecognizer(tap)
     }
+    
+//    @objc func dismissTap() {
+//        emailTextField.resignFirstResponder()
+//        passwordTextField.resignFirstResponder()
+//        nameTextField.resignFirstResponder()
+//        studentIDTextField.resignFirstResponder()
+//        mobileNumberTextField.resignFirstResponder()
+//    }
     
     func signUp(name:String, email: String, password: String, studentID: Int32, mobileNumber:String, city: String) {
         

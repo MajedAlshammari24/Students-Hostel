@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HostelServicesVC: UIViewController {
 
@@ -43,12 +44,8 @@ extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
         cell.serviceLabel.text = requestArray[indexPath.row].name
         cell.serviceDescription.text = requestArray[indexPath.row].description
         guard let images = requestArray[indexPath.row].image else { return UITableViewCell()}
-        guard let url = URL(string: images) else { return UITableViewCell()}
-        DispatchQueue.main.async {
-            if let data = try? Data(contentsOf: url) {
-                cell.serviceImage.image = UIImage(data: data)
-            }
-        }
+        let url = URL(string: images)
+        cell.serviceImage.kf.setImage(with: url,options: [.cacheOriginalImage])
         return cell
     }
     

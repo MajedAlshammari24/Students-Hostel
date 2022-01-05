@@ -17,13 +17,21 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         rememberMeCheck()
         autoLoginButton.setImage(UIImage(systemName: "app"), for: .normal)
+//        let tap = UIGestureRecognizer(target: self, action: #selector(dismissTap))
+//        view.addGestureRecognizer(tap)
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         autoLogin()
     }
+    
+//    @objc func dismissTap() {
+//        emailTextField.resignFirstResponder()
+//        passwordTextField.resignFirstResponder()
+//    }
+    
+    
     
     func autoLogin() {
         if Auth.auth().currentUser != nil {
@@ -57,11 +65,14 @@ class LoginVC: UIViewController {
             }
             if authResult?.user.email != nil {
                 self?.performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
+            } else {
+                self?.presentAlert(title: "Something went wrong", message: "Your email or password is incorrect")
             }
         }
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
+        
         signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
         if (rememberMeClick == true) {
             UserDefaults.standard.set("save", forKey: "rememberMe")

@@ -13,19 +13,19 @@ class MyReservationsVC: UIViewController {
     @IBOutlet weak var reserveStatusLabel: UILabel!
     @IBOutlet weak var reserveRoomLabel: UILabel!
     @IBOutlet weak var reservePriceLabel: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    fileprivate func reserveStatus() {
         Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status,error  in
-            if error != nil {
+            if error == nil {
                 if status?.status != "Pending" {
-                    // is not
+                    // if not reserved
                     
                     self.reserveRoomLabel.isHidden = true
                     self.reservePriceLabel.isHidden = true
                     self.reserveStatusLabel.text = "You have no reservation yet!"
                     
                 } else {
-                    // with Re
+                    // if reserved
                     
                     self.reserveRoomLabel.text = status?.roomName
                     self.reservePriceLabel.text = status?.price
@@ -37,13 +37,20 @@ class MyReservationsVC: UIViewController {
                 self.reservePriceLabel.isHidden = true
                 self.reserveStatusLabel.text = "You have no reservation yet!"
             }
-            
         }
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         
         
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reserveStatus()
+        
+        
+    }
 }

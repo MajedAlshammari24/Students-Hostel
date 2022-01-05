@@ -7,7 +7,9 @@
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
-public var check : Bool?
+import Kingfisher
+
+var reserveCheck:Bool?
 class RoomsSelection: UIViewController {
     
     @IBOutlet weak var checkBoxButton: UIButton!
@@ -31,7 +33,6 @@ class RoomsSelection: UIViewController {
         super.viewDidLoad()
         roomSelectionView.layer.cornerRadius = 20
         setArrayImages = arrayImages
-        roomsImagesDownload()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.reloadData()
@@ -87,15 +88,12 @@ class RoomsSelection: UIViewController {
     
     @IBAction func reserveCompletion(_ sender: UIButton) {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
-            check = false
             termsAlert()
-            
+            reserveCheck = false
         } else {
-            check = true
                 let roomStatus = "Pending"
             Reservation.addReservation(uid: Auth.auth().currentUser?.uid ?? "", roomName: setArrayImages?.name ?? "", price: setArrayImages?.price ?? "", status: roomStatus)
-            
-            
+            reserveCheck = true
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
             
         }
@@ -117,25 +115,18 @@ class RoomsSelection: UIViewController {
 extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
-    func roomsImagesDownload() {
-        guard let arrayImages = setArrayImages?.images else { return }
-        for arrayImage in arrayImages {
-            guard let url = URL(string: arrayImage) else { return }
-            if let data = try? Data(contentsOf: url) {
-                self.downloadedImages.append(UIImage(data: data) ?? UIImage())
-                self.collectionView.reloadData()
-            }
-        }
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return downloadedImages.count
+        return setArrayImages?.images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
+        guard let imagesArraySet = setArrayImages?.images else { return UICollectionViewCell()}
         
-        cell.roomsImageView.image = downloadedImages[indexPath.row]
+        for urlString in imagesArraySet {
+            let url = URL(string: urlString)
+            cell.roomsImageView.kf.setImage(with: url,options: [.cacheOriginalImage])
+        }
         return cell
     }
     

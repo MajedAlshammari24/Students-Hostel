@@ -5,6 +5,7 @@
 //  Created by Majed Alshammari on 03/05/1443 AH.
 //
 import UIKit
+import Kingfisher
 import FirebaseFirestore
 class HomeVC: UIViewController {
     
@@ -17,8 +18,10 @@ class HomeVC: UIViewController {
     
     var selectedRoomsType: Rooms?
     var requestArray = [Rooms]()
+    var homePhotos: HomeImages?
     var imagesDownloaded:[UIImage] = []
     var roomsShowImage:[UIImage] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showSpinner()
@@ -26,51 +29,23 @@ class HomeVC: UIViewController {
             DispatchQueue.main.async {
                 self.requestArray.append(rooms)
                 self.tableView.reloadData()
+                self.removeSpinner()
             }
         }
-        homeImagesDownload()
-        downloadRoomShow()
+        HomeImagesApi.getHomeImage { photos in
+            self.homePhotos = photos
+            self.collectionView.reloadData()
+            self.startTimer()
+        }
+        setDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setDelegate()
-        self.startTimer()
+        
     }
     
-    func homeImagesDownload() {
-        HomeImagesApi.getHomeImage { photos in
-            
-            let arrImages = photos.homeImages
-            guard let arrImages = arrImages else {return}
-            for imagesUrl in arrImages {
-                guard let url = URL(string: imagesUrl) else {return}
-                do {
-                    let data = try Data(contentsOf: url)
-                    DispatchQueue.main.async {
-                        self.imagesDownloaded.append(UIImage(data: data)!)
-                        self.collectionView.reloadData()
-                        self.removeSpinner()
-                    }
-                } catch let error {
-                    print(error.localizedDescription)
-                }
-            }
-            
-            
-        }
-    }
-    
-    func downloadRoomShow(){
-        RoomsApi.getRooms { room in
-            let roomShow = room.roomShow
-            guard let url = URL(string: roomShow!) else { return }
-            if let data = try? Data(contentsOf: url) {
-                self.roomsShowImage.append(UIImage(data: data)!)
-                self.tableView.reloadData()
-            }
-        }
-    }
+
     func setDelegate(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -84,12 +59,13 @@ class HomeVC: UIViewController {
     }
     
     @objc func moveToNextIndex() {
+        guard let count = homePhotos?.homeImages?.count else {return}
         currentCellIndex += 1
-        if currentCellIndex > imagesDownloaded.count - 1 {
+        if currentCellIndex > count - 1 {
             currentCellIndex = 0
         }
         
-        if !imagesDownloaded.isEmpty {
+        if !(homePhotos?.homeImages?.isEmpty ?? true) {
             collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
@@ -120,7 +96,8 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
         cell.cellView.layer.cornerRadius = 12.0
         cell.roomName.text = requestArray[indexPath.row].name
         cell.roomPrice.text = requestArray[indexPath.row].price
-        cell.roomImage.image = roomsShowImage[indexPath.row]
+        let url = URL(string: requestArray[indexPath.row].roomShow ?? "")
+        cell.roomImage.kf.setImage(with: url,options: [.cacheOriginalImage])
         
         return cell
     }
@@ -137,14 +114,14 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagesDownloaded.count
+        return homePhotos?.homeImages?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HomePageImagesCell else { return UICollectionViewCell()}
-        
-        cell.imageView.image = imagesDownloaded[indexPath.row]
-        
+        guard let arrayPhotos = homePhotos?.homeImages?[indexPath.row] else { return UICollectionViewCell()}
+        cell.imageView.kf.setImage(with: URL(string: arrayPhotos),options: [.cacheOriginalImage])
         
         return cell
     }
