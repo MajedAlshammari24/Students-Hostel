@@ -1,9 +1,4 @@
-//
-//  ViewController.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 03/05/1443 AH.
-//
+
 
 import UIKit
 import FirebaseAuth
@@ -15,10 +10,10 @@ class LoginVC: UIViewController {
     var rememberMeClick = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         rememberMeCheck()
         autoLoginButton.setImage(UIImage(systemName: "app"), for: .normal)
-//        let tap = UIGestureRecognizer(target: self, action: #selector(dismissTap))
-//        view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -26,13 +21,7 @@ class LoginVC: UIViewController {
         autoLogin()
     }
     
-//    @objc func dismissTap() {
-//        emailTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//    }
-    
-    
-    
+    // MARK: Auto Login
     func autoLogin() {
         if Auth.auth().currentUser != nil {
             performSegue(withIdentifier: Identifier.home.rawValue, sender: nil)
@@ -40,7 +29,7 @@ class LoginVC: UIViewController {
         }
     }
     
-    
+    // MARK: Save user login data if logged out
     @IBAction func autoLoginCheckBox(_ sender: UIButton) {
         if (rememberMeClick == false) {
             if let image = UIImage(systemName: "checkmark.square") {
@@ -56,9 +45,10 @@ class LoginVC: UIViewController {
         }
     }
     
+   
     
-    
-    func signIn(email:String, password:String) {
+    // MARK: Login Function
+    private func signIn(email:String, password:String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -71,8 +61,9 @@ class LoginVC: UIViewController {
         }
     }
     
+    
+    // MARK: Login Button Pressed
     @IBAction func loginButton(_ sender: UIButton) {
-        
         signIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
         if (rememberMeClick == true) {
             UserDefaults.standard.set("save", forKey: "rememberMe")
@@ -83,6 +74,8 @@ class LoginVC: UIViewController {
         }
     }
     
+    
+    // MARK: Remember me function
     func rememberMeCheck() {
         if UserDefaults.standard.string(forKey: "rememberMe") == "save" {
             if let image = UIImage(systemName: "checkmark.square") {
@@ -99,9 +92,22 @@ class LoginVC: UIViewController {
         }
     }
     
+    // MARK: Register Page
     @IBAction func goToRegisterButton(_ sender: UIButton) {
         performSegue(withIdentifier: Identifier.register.rawValue, sender: nil)
     }
     
 }
 
+extension LoginVC:UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+}

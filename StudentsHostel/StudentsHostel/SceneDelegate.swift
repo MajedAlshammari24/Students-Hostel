@@ -1,9 +1,4 @@
-//
-//  SceneDelegate.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 03/05/1443 AH.
-//
+
 
 import UIKit
 

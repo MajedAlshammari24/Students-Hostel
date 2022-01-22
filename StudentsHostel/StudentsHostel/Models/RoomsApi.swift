@@ -1,12 +1,8 @@
-//
-//  RoomsApi.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 06/05/1443 AH.
-//
+
 
 import Foundation
 import FirebaseFirestore
+
 
 class Rooms {
     var images: [String]?
@@ -39,7 +35,7 @@ class RoomsApi {
     
     static func getRooms(completion: @escaping (Rooms) -> Void) {
         
-        let refRooms = Firestore.firestore().collection("Rooms")
+        let refRooms = db.collection("Rooms")
         refRooms.getDocuments { documents, error in
             
             guard let documents = documents?.documents else {return}

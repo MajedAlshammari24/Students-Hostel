@@ -1,9 +1,4 @@
-//
-//  RoomsSelection.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 04/05/1443 AH.
-//
+
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
@@ -13,14 +8,13 @@ var reserveCheck:Bool?
 class RoomsSelection: UIViewController {
     
     @IBOutlet weak var checkBoxButton: UIButton!
-    
     @IBOutlet weak var roomName: UILabel!
     @IBOutlet weak var roomType: UILabel!
     @IBOutlet weak var bedType: UILabel!
     @IBOutlet weak var bathroomType: UILabel!
     @IBOutlet weak var roomPrice: UILabel!
     @IBOutlet weak var roomSelectionView: UIImageView!
-    var arrayImages: Rooms?
+    var passedRoomsData: Rooms?
     var setArrayImages: Rooms?
     var timer: Timer?
     var currentCellIndex = 0
@@ -32,22 +26,29 @@ class RoomsSelection: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         roomSelectionView.layer.cornerRadius = 20
-        setArrayImages = arrayImages
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        setArrayImages = passedRoomsData
+        setDelegate()
         collectionView.reloadData()
         startTimer()
-        roomName.text = arrayImages?.roomName
-        roomType.text = arrayImages?.roomType
-        bedType.text = arrayImages?.bedType
-        bathroomType.text = arrayImages?.bathroomType
-        roomPrice.text = arrayImages?.price
+        configureLabels()
         checkBoxButton.setImage(UIImage(systemName: "app"), for: .normal)
-        
     }
     
+    // MARK: Show Rooms Info
+    func configureLabels() {
+        roomName.text = passedRoomsData?.roomName
+        roomType.text = passedRoomsData?.roomType
+        bedType.text = passedRoomsData?.bedType
+        bathroomType.text = passedRoomsData?.bathroomType
+        roomPrice.text = passedRoomsData?.price
+    }
     
+    func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
     
+    // MARK: CheckBox Button
     @IBAction func checkBoxAction(_ sender: UIButton) {
         DispatchQueue.main.async {
             if sender.image(for: .normal) == UIImage(systemName: "app") {
@@ -61,22 +62,24 @@ class RoomsSelection: UIViewController {
     
     
     
-    
+    // MARK: CollectionView Timer
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
     }
     
     @objc func moveToNextIndex() {
-        if currentCellIndex < (setArrayImages?.images?.count ?? 0) - 1 {
-            currentCellIndex += 1
-        }
-        else {
+        guard let count = setArrayImages?.images?.count else {return}
+        currentCellIndex += 1
+        if currentCellIndex > count - 1 {
             currentCellIndex = 0
         }
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        
+        if !(setArrayImages?.images?.isEmpty ?? true) {
+            collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        }
     }
     
-    
+    // MARK: Go To Read Terms and Conditions
     @IBAction func readTerms(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "Terms") as! TermsAndConditionsViewController
         present(vc, animated: true)
@@ -85,7 +88,7 @@ class RoomsSelection: UIViewController {
     }
     
     
-    
+    // MARK: If Reserve Button Pressed
     @IBAction func reserveCompletion(_ sender: UIButton) {
         if checkBoxButton.imageView?.image != UIImage(systemName: "checkmark.square") {
             termsAlert()
@@ -100,18 +103,9 @@ class RoomsSelection: UIViewController {
     }
     
     
-    func termsAlert(){
-        let alert = UIAlertController(title: "You did not agree", message: "Please Agree to our terms and conditions", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Terms And Conditions", style: .default, handler: { terms in
-            self.performSegue(withIdentifier: Identifier.terms.rawValue, sender: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-    
 }
 
-
+// MARK: CollectionView Set of rooms pictures
 extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
@@ -121,12 +115,10 @@ extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
-        guard let imagesArraySet = setArrayImages?.images else { return UICollectionViewCell()}
+        guard let imagesArraySet = setArrayImages?.images?[indexPath.row] else { return UICollectionViewCell()}
+        cell.roomsImageView.kf.setImage(with: URL(string: imagesArraySet),options: [.cacheOriginalImage])
+            
         
-        for urlString in imagesArraySet {
-            let url = URL(string: urlString)
-            cell.roomsImageView.kf.setImage(with: url,options: [.cacheOriginalImage])
-        }
         return cell
     }
     
@@ -137,9 +129,6 @@ extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
-    
-    
     
     
     

@@ -1,9 +1,4 @@
-//
-//  HomeImagesApi.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 15/05/1443 AH.
-//
+
 
 import Foundation
 import FirebaseFirestore
@@ -26,7 +21,7 @@ class HomeImagesApi {
     static func getHomeImage(completion: @escaping (HomeImages) -> Void) {
         
         
-        let refImages = Firestore.firestore().collection("HomePageImages")
+        let refImages = db.collection("HomePageImages")
         refImages.getDocuments { documents, error in
             
             guard let documents = documents?.documents else {return}

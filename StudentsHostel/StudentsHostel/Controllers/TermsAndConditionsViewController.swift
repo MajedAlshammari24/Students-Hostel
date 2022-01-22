@@ -1,9 +1,3 @@
-//
-//  TermsAndConditionsViewController.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 10/05/1443 AH.
-//
 
 import UIKit
 
@@ -22,7 +16,5 @@ class TermsAndConditionsViewController: UIViewController {
         term4.text = "By reserve a room you agree to that your reservation will start at the start of semester, and will expired at the end of same semester"
     }
     
-
-   
-
 }
+

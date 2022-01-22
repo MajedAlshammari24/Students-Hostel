@@ -1,9 +1,4 @@
-//
-//  ServicesApi.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 09/05/1443 AH.
-//
+
 
 import Foundation
 import FirebaseFirestore
@@ -28,7 +23,6 @@ extension Services {
 class ServicesApi {
     
     static func getServices(completion: @escaping (Services) -> Void) {
-        let db = Firestore.firestore()
         let refServices = db.collection("Services")
         refServices.getDocuments { documents, error in
             guard let documents = documents?.documents else { return }

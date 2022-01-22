@@ -1,9 +1,4 @@
-//
-//  StudentsProfiles.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 05/05/1443 AH.
-//
+
 
 import Foundation
 import UIKit

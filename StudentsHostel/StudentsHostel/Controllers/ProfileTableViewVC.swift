@@ -1,15 +1,10 @@
-//
-//  ProfileTableViewVC.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 02/06/1443 AH.
-//
+
 
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 class ProfileTableViewVC: UITableViewController {
-
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var studentName: UILabel!
     @IBOutlet weak var studentEmail: UILabel!
@@ -20,8 +15,25 @@ class ProfileTableViewVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileImageView.layer.masksToBounds = true
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+        fetchStudentProfile()
+        profileImageView.makeRounded()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // MARK: Gesture Recognizer
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tap)
+    }
+    
+    @objc func didTapImage(){
+        photoPickAlert()
+    }
+    
+    // MARK: Students Information Function
+    func fetchStudentProfile() {
         showSpinner()
         StudentApi.getStudent(uid: Auth.auth().currentUser?.uid ?? "") { student in
             self.removeSpinner()
@@ -34,9 +46,8 @@ class ProfileTableViewVC: UITableViewController {
             self.saveImageProfile()
         }
     }
-
     
-    
+    // MARK: Student ImageProfile Saving Function
     private func saveImageProfile() {
         guard let url = URL(string: self.selfimageurl ?? "") else {return}
         if let data = try? Data(contentsOf: url) {
@@ -45,13 +56,13 @@ class ProfileTableViewVC: UITableViewController {
     }
     
     
-    @IBAction func setProfileImage(_ sender: UIButton) {
-        photoPickAlert()
-    }
-    
-    
+    // MARK: Logout
     @IBAction func logOutButton(_ sender: UIButton) {
-        try! Auth.auth().signOut()
+        do {
+            try Auth.auth().signOut()
+        }catch let error{
+            print(error)
+        }
         
         if let storyboard = self.storyboard {
             let vc = storyboard.instantiateViewController(withIdentifier: "loginVC") as! LoginVC
@@ -60,6 +71,7 @@ class ProfileTableViewVC: UITableViewController {
         }
     }
     
+    // MARK: Update Students Info Function
     fileprivate func updateStudentInfo() {
         let alert = UIAlertController(title: "Update Profile", message: nil, preferredStyle:.alert)
         
@@ -83,6 +95,7 @@ class ProfileTableViewVC: UITableViewController {
                         print("Something went wrong\(error)")
                     } else {
                         StudentApi.updateInfo(uid: Auth.auth().currentUser?.uid ?? "", name: studentName, email: studentEmail, mobileNumber: studentMobile)
+                        self.tableView.reloadData()
                     }
                 })
             }
@@ -92,17 +105,17 @@ class ProfileTableViewVC: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    
+    // MARK: Update Info Button
     @IBAction func editStudentProfile(_ sender: UIBarButtonItem) {
         updateStudentInfo()
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -110,9 +123,18 @@ class ProfileTableViewVC: UITableViewController {
             return 5
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        50
+    }
+    
 }
 
+// MARK: ImagePicker
 extension ProfileTableViewVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
@@ -124,6 +146,9 @@ extension ProfileTableViewVC: UIImagePickerControllerDelegate, UINavigationContr
         }))
         alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
             self.getProfileImage(fromSourceType: .photoLibrary)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { delete in
+            self.profileImageView.image = UIImage(systemName: "plus.circle")
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
         self.present(alert, animated: true, completion: nil)

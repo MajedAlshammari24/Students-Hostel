@@ -9,6 +9,7 @@ import UIKit
 
 class ServicesCell: UITableViewCell {
 
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var serviceLabel: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!
     @IBOutlet weak var serviceImage: UIImageView!

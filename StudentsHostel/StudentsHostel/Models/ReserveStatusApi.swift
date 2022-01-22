@@ -1,9 +1,4 @@
-//
-//  ReserveStatusApi.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 15/05/1443 AH.
-//
+
 
 import Foundation
 import FirebaseAuth
@@ -19,7 +14,6 @@ class Reservation {
 extension Reservation {
     
     static func addReservation(uid: String, roomName: String, price: String, status: String) {
-        let db = Firestore.firestore()
         let refReservation = db.collection("Reservations")
         refReservation.document(uid).setData(Reservation.createReserve(roomName: roomName, price: price, status: status))
         
@@ -33,6 +27,9 @@ extension Reservation {
         return reservation
     }
     
+    static func deleteReservation(uid:String) {
+        db.collection("Reservations").document(uid).delete()
+    }
     
     static func createReserve(roomName: String, price:String, status: String) -> [String : Any] {
         let newReserve = ["roomName":roomName,"price":price,"status":status] as [String : Any]
@@ -42,7 +39,7 @@ extension Reservation {
     
     static func getStatus(uid:String,completion: @escaping (Reservation?,Error?) -> Void) {
         
-        let refStatus = Firestore.firestore().collection("Reservations")
+        let refStatus = db.collection("Reservations")
         
         refStatus.document(uid).getDocument { document, error in
             if let document = document, document.exists {

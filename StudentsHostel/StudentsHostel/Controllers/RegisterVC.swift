@@ -1,9 +1,4 @@
-//
-//  RegisterVC.swift
-//  StudentsHostel
-//
-//  Created by Majed Alshammari on 03/05/1443 AH.
-//
+
 
 import UIKit
 import FirebaseAuth
@@ -23,19 +18,13 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         createPicker()
         dismissPickerView()
-//        let tap = UIGestureRecognizer(target: self, action: #selector(dismissTap))
-//        view.addGestureRecognizer(tap)
+        setDelegate()
     }
     
-//    @objc func dismissTap() {
-//        emailTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        nameTextField.resignFirstResponder()
-//        studentIDTextField.resignFirstResponder()
-//        mobileNumberTextField.resignFirstResponder()
-//    }
-    
-    func signUp(name:String, email: String, password: String, studentID: Int32, mobileNumber:String, city: String) {
+
+   
+    // MARK: Register Function
+    private func signUp(name:String, email: String, password: String, studentID: Int, mobileNumber:String, city: String) {
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             if let error = error {
@@ -50,7 +39,7 @@ class RegisterVC: UIViewController {
         }
     }
     
-    
+    // MARK: Register Button Pressed
     @IBAction func registerButton(_ sender: UIButton) {
         let name = nameTextField.text
         let email = emailTextField.text
@@ -58,18 +47,39 @@ class RegisterVC: UIViewController {
         let city = cityTextField.text
         let mobileNumber = mobileNumberTextField.text
         
-        guard let studentID:Int32 = Int32(studentIDTextField.text ?? "") else { return }
+        guard let studentID:Int = Int(studentIDTextField.text ?? "") else { return }
         
         signUp(name: name!, email: email!, password: password!, studentID: studentID, mobileNumber: mobileNumber!, city: city!)
     }
     
-     
-    
-    
 }
 
-extension RegisterVC:UIPickerViewDelegate,UIPickerViewDataSource{
+
+
+extension RegisterVC:UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate{
     
+    // MARK: Handle TextFields
+    func setDelegate() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        nameTextField.delegate = self
+        mobileNumberTextField.delegate = self
+        studentIDTextField.delegate = self
+        cityTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    
+    // MARK: Handle PickerView
     func createPicker() {
        let pickerView = UIPickerView()
        pickerView.delegate = self
