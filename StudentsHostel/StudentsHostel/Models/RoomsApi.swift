@@ -2,6 +2,7 @@
 
 import Foundation
 import FirebaseFirestore
+import Accelerate
 
 
 class Rooms {
@@ -34,18 +35,23 @@ extension Rooms {
 class RoomsApi {
     
     static func getRooms(completion: @escaping (Rooms) -> Void) {
-        
+   
         let refRooms = db.collection("Rooms")
         refRooms.getDocuments { documents, error in
             
             guard let documents = documents?.documents else {return}
+            
             for document in documents {
-                refRooms.document(document.documentID).getDocument { document, error in
-                    if let doc = document, doc.exists {
-                        let room = Rooms.getRoomImage(dict: doc.data()!)
-                        completion(room)
-                    }
-                }
+    
+                let room = Rooms.getRoomImage(dict: document.data())
+                completion(room)
+//                refRooms.order(by: "").document(document.documentID).getDocument { document, error in
+//                    if let doc = document, doc.exists {
+//                        print(doc.get("create"))
+//                        let room = Rooms.getRoomImage(dict: doc.data()!)
+//                        completion(room)
+//                    }
+//                }
             }
         }
     }

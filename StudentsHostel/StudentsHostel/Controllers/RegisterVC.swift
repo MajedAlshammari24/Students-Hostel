@@ -19,10 +19,10 @@ class RegisterVC: UIViewController {
         createPicker()
         dismissPickerView()
         setDelegate()
+
+        
     }
     
-
-   
     // MARK: Register Function
     private func signUp(name:String, email: String, password: String, studentID: Int, mobileNumber:String, city: String) {
         
@@ -51,7 +51,6 @@ class RegisterVC: UIViewController {
         
         signUp(name: name!, email: email!, password: password!, studentID: studentID, mobileNumber: mobileNumber!, city: city!)
     }
-    
 }
 
 
@@ -78,13 +77,20 @@ extension RegisterVC:UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDele
     }
     
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == cityTextField {
+            return false
+        }
+        return true
+    }
+    
     
     // MARK: Handle PickerView
     func createPicker() {
-       let pickerView = UIPickerView()
-       pickerView.delegate = self
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
         cityTextField.inputView = pickerView
-   }
+    }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -100,6 +106,7 @@ extension RegisterVC:UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCity = cities[row]
         cityTextField.text = selectedCity
+        
     }
     
     func dismissPickerView() {
@@ -113,5 +120,6 @@ extension RegisterVC:UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDele
     
     @objc func action() {
         view.endEditing(true)
+        
     }
 }

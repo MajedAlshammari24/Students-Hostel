@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-class Student {
+ class Student {
     var name: String?
     var email: String?
     var mobileNumber: String?

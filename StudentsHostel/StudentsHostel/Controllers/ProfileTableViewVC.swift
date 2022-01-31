@@ -11,13 +11,19 @@ class ProfileTableViewVC: UITableViewController {
     @IBOutlet weak var studentPhone: UILabel!
     @IBOutlet weak var studentID: UILabel!
     @IBOutlet weak var studentCity: UILabel!
-    var selfimageurl : String?
+    @IBOutlet weak var selectLangBtn: UIButton!
+    @IBOutlet weak var appeareanceSwitch: UISwitch!
+    var userDefault = UserDefaults.standard
+    var selfImageUrl : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectLangBtn.setTitle("عربي".localized, for: .normal)
         fetchStudentProfile()
         profileImageView.makeRounded()
-       
+        if UserDefaults.standard.bool(forKey: "isDark") == true{
+            appeareanceSwitch.setOn(true, animated: false)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,6 +33,7 @@ class ProfileTableViewVC: UITableViewController {
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(tap)
     }
+    
     
     @objc func didTapImage(){
         photoPickAlert()
@@ -41,15 +48,15 @@ class ProfileTableViewVC: UITableViewController {
             self.studentEmail.text = student.email
             self.studentPhone.text = student.mobileNumber
             self.studentID.text = String(student.studentID ?? 0)
-            self.studentCity.text = student.city
-            self.selfimageurl = student.imageProfile
+            self.studentCity.text = student.city?.localized
+            self.selfImageUrl = student.imageProfile
             self.saveImageProfile()
         }
     }
     
     // MARK: Student ImageProfile Saving Function
     private func saveImageProfile() {
-        guard let url = URL(string: self.selfimageurl ?? "") else {return}
+        guard let url = URL(string: self.selfImageUrl ?? "") else {return}
         if let data = try? Data(contentsOf: url) {
             self.profileImageView.image = UIImage(data: data)
         }
@@ -73,20 +80,20 @@ class ProfileTableViewVC: UITableViewController {
     
     // MARK: Update Students Info Function
     fileprivate func updateStudentInfo() {
-        let alert = UIAlertController(title: "Update Profile", message: nil, preferredStyle:.alert)
+        let alert = UIAlertController(title: "Update Profile".localized, message: nil, preferredStyle:.alert)
         
         alert.addTextField(configurationHandler: { textField1 in
-            textField1.placeholder = "Name..."
+            textField1.text = self.studentName.text
         })
         alert.addTextField(configurationHandler: { textField2 in
-            textField2.placeholder = "Email..."
+            textField2.text = self.studentEmail.text
             textField2.keyboardType = .emailAddress
         })
         alert.addTextField(configurationHandler: { textField3 in
-            textField3.placeholder = "Mobile Number..."
+            textField3.text = self.studentPhone.text
             textField3.keyboardType = .numberPad
         })
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Confirm".localized, style: .default, handler: { action in
             if let studentName = alert.textFields?[0].text,
                let studentEmail = alert.textFields?[1].text,
                let studentMobile = alert.textFields?[2].text {
@@ -94,16 +101,71 @@ class ProfileTableViewVC: UITableViewController {
                     if let error = error {
                         print("Something went wrong\(error)")
                     } else {
-                        StudentApi.updateInfo(uid: Auth.auth().currentUser?.uid ?? "", name: studentName, email: studentEmail, mobileNumber: studentMobile)
-                        self.tableView.reloadData()
+                        if !studentName.isEmpty, !studentEmail.isEmpty, !studentMobile.isEmpty {
+                            StudentApi.updateInfo(uid: Auth.auth().currentUser?.uid ?? "", name: studentName, email: studentEmail, mobileNumber: studentMobile)
+                            self.fetchStudentProfile()
+                            self.tableView.reloadData()
+                            self.presentAlert(title: "Done".localized, message:"Your information updated successfully".localized)
+                        } else{
+                            self.presentAlert(title: "Update Error".localized, message: "Fields can't be empty!".localized)
+                        }
                     }
                 })
             }
-            self.presentAlert(title: "Done", message:"Your information will change next login")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+    
+    
+    @IBAction func appAppearance(_ sender: UISwitch) {
+        
+        if appeareanceSwitch.isOn{
+            userDefault.set(true, forKey: "isDark")
+            UIApplication.shared.windows.forEach { windows in
+                windows.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            userDefault.set(false, forKey: "isDark")
+            UIApplication.shared.windows.forEach { windows in
+                windows.overrideUserInterfaceStyle = .light
+            }
+        }
+        
+        //        if appeareanceSwitch.isOn{
+        //            userDefault.set(true, forKey: ON_OFF_KEY)
+        //        } else {
+        //            userDefault.set(false, forKey: ON_OFF_KEY)
+        //
+        //        }
+        
+        
+        //        if appeareanceSwitch.isOn {
+        //            UIApplication.shared.windows.forEach { window in
+        //                window.overrideUserInterfaceStyle = .dark
+        //            }
+        //        } else {
+        //            UIApplication.shared.windows.forEach { window in
+        //                window.overrideUserInterfaceStyle = .light
+        //            }
+        //        }
+        
+    }
+    
+    @IBAction func selectLanguage(_ sender: UIButton) {
+        let currentLanguage = Locale.current.languageCode
+        
+        let alert = UIAlertController(title: "Warning".localized, message: "The application will be restarted".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Restart".localized, style: .default) { restart in
+            let newLanguage = currentLanguage == "en" ? "ar" : "en"
+            UserDefaults.standard.setValue([newLanguage], forKey: "AppleLanguages")
+            exit(0)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        present(alert, animated: true)
+    }
+    
+    
     
     // MARK: Update Info Button
     @IBAction func editStudentProfile(_ sender: UIBarButtonItem) {
@@ -140,17 +202,17 @@ extension ProfileTableViewVC: UIImagePickerControllerDelegate, UINavigationContr
     
     private func photoPickAlert() {
         
-        let alert = UIAlertController(title: "Choose Your Photo", message: "From where you want to pick the photo?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+        let alert = UIAlertController(title: "Choose Your Photo".localized, message: "From where you want to pick the photo?".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera".localized, style: .default, handler: {(action: UIAlertAction) in
             self.getProfileImage(fromSourceType: .camera)
         }))
-        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Photo Album".localized, style: .default, handler: {(action: UIAlertAction) in
             self.getProfileImage(fromSourceType: .photoLibrary)
         }))
-        alert.addAction(UIAlertAction(title: "Delete photo", style: .default, handler: { delete in
+        alert.addAction(UIAlertAction(title: "Delete photo".localized, style: .default, handler: { delete in
             self.profileImageView.image = UIImage(systemName: "plus.circle")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .destructive, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

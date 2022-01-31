@@ -10,7 +10,6 @@
 		840760F6276F10E7009108F0 /* ReserveStatusApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840760F5276F10E7009108F0 /* ReserveStatusApi.swift */; };
 		842891CD2760A2EB00D3DC27 /* RoomsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */; };
 		842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D02760E69500D3DC27 /* RoomsImages.swift */; };
-		842891D32760EE5700D3DC27 /* Structs&Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D22760EE5700D3DC27 /* Structs&Arrays.swift */; };
 		842891D52761EC9400D3DC27 /* StudentsProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D42761EC9400D3DC27 /* StudentsProfiles.swift */; };
 		842891D72761F21A00D3DC27 /* StudentApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D62761F21A00D3DC27 /* StudentApi.swift */; };
 		842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842891D8276394DC00D3DC27 /* RoomsApi.swift */; };
@@ -40,6 +39,7 @@
 		844A299C2769E47B00B6E024 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 844A299B2769E47B00B6E024 /* FirebaseStorage */; };
 		844A29A2276F06FD00B6E024 /* ServicesDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */; };
 		845779AA2781B2D200C428B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 845779A92781B2D200C428B4 /* Kingfisher */; };
+		847E71A4279DE10E003AB7CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 847E71A6279DE10E003AB7CE /* Localizable.strings */; };
 		84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */; };
 		84B1E237276F8FEF00D88F53 /* HomePageImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */; };
 /* End PBXBuildFile section */
@@ -48,7 +48,6 @@
 		840760F5276F10E7009108F0 /* ReserveStatusApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveStatusApi.swift; sourceTree = "<group>"; };
 		842891CC2760A2EB00D3DC27 /* RoomsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsSelection.swift; sourceTree = "<group>"; };
 		842891D02760E69500D3DC27 /* RoomsImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsImages.swift; sourceTree = "<group>"; };
-		842891D22760EE5700D3DC27 /* Structs&Arrays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Structs&Arrays.swift"; sourceTree = "<group>"; };
 		842891D42761EC9400D3DC27 /* StudentsProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsProfiles.swift; sourceTree = "<group>"; };
 		842891D62761F21A00D3DC27 /* StudentApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentApi.swift; sourceTree = "<group>"; };
 		842891D8276394DC00D3DC27 /* RoomsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsApi.swift; sourceTree = "<group>"; };
@@ -78,6 +77,11 @@
 		844801EC2785867A00EED872 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		844801EF2785D96700EED872 /* ProfileTableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewVC.swift; sourceTree = "<group>"; };
 		844A29A1276F06FD00B6E024 /* ServicesDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesDescriptionCell.swift; sourceTree = "<group>"; };
+		847E71A0279DE0E6003AB7CE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		847E71A1279DE0E6003AB7CE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		847E71A2279DE0F0003AB7CE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		847E71A3279DE0F2003AB7CE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		847E71A5279DE10E003AB7CE /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84B1E234276F8DB300D88F53 /* HomeImagesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImagesApi.swift; sourceTree = "<group>"; };
 		84B1E236276F8FEF00D88F53 /* HomePageImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageImagesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +127,7 @@
 				843CACDC275F708F001A8B58 /* Cells */,
 				843CACBE275F6AFA001A8B58 /* AppDelegate.swift */,
 				843CACC0275F6AFA001A8B58 /* SceneDelegate.swift */,
+				847E71A6279DE10E003AB7CE /* Localizable.strings */,
 				843CACC4275F6AFA001A8B58 /* Main.storyboard */,
 				843CACC7275F6B01001A8B58 /* Assets.xcassets */,
 				843CACC9275F6B01001A8B58 /* LaunchScreen.storyboard */,
@@ -165,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				843CACEA275F9169001A8B58 /* Extensions.swift */,
-				842891D22760EE5700D3DC27 /* Structs&Arrays.swift */,
 				842891D42761EC9400D3DC27 /* StudentsProfiles.swift */,
 				842891D62761F21A00D3DC27 /* StudentApi.swift */,
 				842891D8276394DC00D3DC27 /* RoomsApi.swift */,
@@ -244,6 +248,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 843CACB2275F6AF9001A8B58;
 			packageReferences = (
@@ -267,6 +272,7 @@
 				844801E927857E0900EED872 /* PlayfairDisplay-Italic-VariableFont_wght.ttf in Resources */,
 				843CACCB275F6B01001A8B58 /* LaunchScreen.storyboard in Resources */,
 				843CACD3275F6D4E001A8B58 /* GoogleService-Info.plist in Resources */,
+				847E71A4279DE10E003AB7CE /* Localizable.strings in Resources */,
 				844801E827857E0900EED872 /* PlayfairDisplay-VariableFont_wght.ttf in Resources */,
 				843CACC8275F6B01001A8B58 /* Assets.xcassets in Resources */,
 				843CACC6275F6AFA001A8B58 /* Main.storyboard in Resources */,
@@ -299,7 +305,6 @@
 				843CACC1275F6AFA001A8B58 /* SceneDelegate.swift in Sources */,
 				840760F6276F10E7009108F0 /* ReserveStatusApi.swift in Sources */,
 				842891D9276394DD00D3DC27 /* RoomsApi.swift in Sources */,
-				842891D32760EE5700D3DC27 /* Structs&Arrays.swift in Sources */,
 				842891D12760E69500D3DC27 /* RoomsImages.swift in Sources */,
 				84B1E235276F8DB300D88F53 /* HomeImagesApi.swift in Sources */,
 				843CACEB275F9169001A8B58 /* Extensions.swift in Sources */,
@@ -314,6 +319,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				843CACC5275F6AFA001A8B58 /* Base */,
+				847E71A0279DE0E6003AB7CE /* ar */,
+				847E71A2279DE0F0003AB7CE /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -322,8 +329,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				843CACCA275F6B01001A8B58 /* Base */,
+				847E71A1279DE0E6003AB7CE /* ar */,
+				847E71A3279DE0F2003AB7CE /* ar */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		847E71A6279DE10E003AB7CE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				847E71A5279DE10E003AB7CE /* ar */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -333,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -394,6 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

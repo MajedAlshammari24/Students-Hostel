@@ -36,13 +36,15 @@ extension HostelServicesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? ServicesCell else { return UITableViewCell()}
-        cell.serviceLabel.text = servicesData[indexPath.row].name
-        cell.serviceDescription.text = servicesData[indexPath.row].description
+        cell.serviceLabel.text = servicesData[indexPath.row].name?.localized
+        cell.serviceDescription.text = servicesData[indexPath.row].description?.localized
         cell.cellView.setCornerStyle()
         guard let images = servicesData[indexPath.row].image else { return UITableViewCell()}
         
         let url = URL(string: images)
         cell.serviceImage.kf.setImage(with: url,options: [.cacheOriginalImage])
+        
+        cell.serviceImage.layer.cornerRadius = 12
         return cell
     }
     

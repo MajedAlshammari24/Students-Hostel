@@ -29,6 +29,11 @@ extension UIViewController {
     }
 }
 
+extension Notification.Name {
+    static let darkModeEnabled = Notification.Name("com.yourApp.notifications.darkModeEnabled")
+    static let darkModeDisabled = Notification.Name("com.yourApp.notifications.darkModeDisabled")
+}
+
 extension UIImage {
     var circleMask: UIImage? {
         let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
@@ -83,14 +88,13 @@ extension UIView{
     }
 }
 
-
-
 extension String{
     var localized:String{
         NSLocalizedString(self, comment: "")
     }
 }
 
+let cities = ["","Abha".localized,"Buraydah".localized,"AlBahah".localized,"Buq a".localized,"Dammam".localized,"Dhahran".localized,"Dumat Al-Jandal".localized,"Dawadmi".localized,"Hail".localized,"Hotat Bani Tamim".localized,"Hofuf".localized,"Hafr Al-Batin".localized,"Jeddah".localized,"Khafji".localized,"Khamis Mushait".localized,"Khobar".localized,"Al Majma'ah".localized,"Medina".localized,"Mecca".localized,"Qatif".localized,"Qurayyat".localized,"Rabegh".localized,"Rafha".localized,"Riyadh".localized,"Taif".localized,"Tabuk".localized,"Yanbu".localized]
 
 
 

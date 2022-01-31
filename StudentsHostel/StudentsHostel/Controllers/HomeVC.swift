@@ -10,7 +10,7 @@ class HomeVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    let userDefault = UserDefaults.standard
     var selectedRoomsType: Rooms?
     var reserveData = [Rooms]()
     var homePhotos: HomeImages?
@@ -32,13 +32,8 @@ class HomeVC: UIViewController {
         }
         setDelegate()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
 
+   
     func setDelegate(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -69,7 +64,6 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
         
         let destinationController = segue.destination as! RoomsSelection
         destinationController.passedRoomsData = selectedRoomsType
-        
     }
     
     
@@ -81,8 +75,8 @@ extension HomeVC: UITableViewDelegate,UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RoomsCells else { return UITableViewCell()}
         cell.cellView.setCornerStyle()
         let reservesIndex = reserveData[indexPath.row]
-        cell.roomName.text = reservesIndex.name
-        cell.roomPrice.text = reservesIndex.price
+        cell.roomName.text = reservesIndex.name?.localized
+        cell.roomPrice.text = reservesIndex.price?.localized
         let url = URL(string: reservesIndex.roomShow ?? "")
         cell.roomImage.kf.setImage(with: url,options: [.cacheOriginalImage])
         

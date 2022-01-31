@@ -32,14 +32,14 @@ class MyReservationsVC: UIViewController {
         Reservation.getStatus(uid: Auth.auth().currentUser?.uid ?? "") { status,error  in
             self.removeSpinner()
             if error == nil {
-                if status?.status != "Pending" {
+                if status?.status != "Pending".localized {
                     // if not reserved
                     self.frameImage1.isHidden = true
                     self.frameImage2.isHidden = true
                     self.frameImage3.isHidden = true
                     self.reserveRoomLabel.isHidden = true
                     self.reservePriceLabel.isHidden = true
-                    self.reserveStatusLabel.text = "You have no reservation yet!"
+                    self.reserveStatusLabel.text = "You have no reservation yet!".localized
                 } else {
                     // if reserved
                     self.frameImage1.isHidden = false
@@ -57,13 +57,19 @@ class MyReservationsVC: UIViewController {
     
     // MARK: Delete reservation button
     @IBAction func reserveSettings(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Delete Reservation", message: "Are you sure you want to delete your reservation?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Delete", style: .default){ ok in
+        let alert = UIAlertController(title: "Delete Reservation".localized, message: "Are you sure you want to delete your reservation?".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete".localized, style: .default){ ok in
             Reservation.deleteReservation(uid: self.uid ?? "")
+            self.frameImage1.isHidden = true
+            self.frameImage2.isHidden = true
+            self.frameImage3.isHidden = true
+            self.reserveRoomLabel.isHidden = true
+            self.reservePriceLabel.isHidden = true
+            self.reserveStatusLabel.text = "You have no reservation yet!".localized
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(alert, animated: true)
     }
     
-
+    
 }

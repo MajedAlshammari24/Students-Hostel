@@ -7,6 +7,8 @@ import Kingfisher
 var reserveCheck:Bool?
 class RoomsSelection: UIViewController {
     
+    @IBOutlet weak var reserveButtonTitle: UIButton!
+    @IBOutlet weak var readTermsTitle: UIButton!
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var roomName: UILabel!
     @IBOutlet weak var roomType: UILabel!
@@ -18,13 +20,17 @@ class RoomsSelection: UIViewController {
     var setArrayImages: Rooms?
     var timer: Timer?
     var currentCellIndex = 0
-    var downloadedImages : [UIImage] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reserveButtonTitle.setTitle("Reserve".localized, for: .normal)
+        reserveButtonTitle.titleLabel?.font = UIFont(name: "Helvetica", size: 35)
+        reserveButtonTitle.setTitleColor(.white, for: .normal)
+        readTermsTitle.setTitle("Read them?".localized, for: .normal)
+        readTermsTitle.titleLabel?.font = UIFont.systemFont(ofSize: 9.0)
         roomSelectionView.layer.cornerRadius = 20
         setArrayImages = passedRoomsData
         setDelegate()
@@ -36,11 +42,11 @@ class RoomsSelection: UIViewController {
     
     // MARK: Show Rooms Info
     func configureLabels() {
-        roomName.text = passedRoomsData?.roomName
-        roomType.text = passedRoomsData?.roomType
-        bedType.text = passedRoomsData?.bedType
-        bathroomType.text = passedRoomsData?.bathroomType
-        roomPrice.text = passedRoomsData?.price
+        roomName.text = passedRoomsData?.roomName?.localized
+        roomType.text = passedRoomsData?.roomType?.localized
+        bedType.text = passedRoomsData?.bedType?.localized
+        bathroomType.text = passedRoomsData?.bathroomType?.localized
+        roomPrice.text = passedRoomsData?.price?.localized
     }
     
     func setDelegate() {
@@ -83,8 +89,6 @@ class RoomsSelection: UIViewController {
     @IBAction func readTerms(_ sender: UIButton) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "Terms") as! TermsAndConditionsViewController
         present(vc, animated: true)
-        
-        
     }
     
     
@@ -94,15 +98,12 @@ class RoomsSelection: UIViewController {
             termsAlert()
             reserveCheck = false
         } else {
-                let roomStatus = "Pending"
-            Reservation.addReservation(uid: Auth.auth().currentUser?.uid ?? "", roomName: setArrayImages?.name ?? "", price: setArrayImages?.price ?? "", status: roomStatus)
+            let roomStatus = "Pending".localized
+            Reservation.addReservation(uid: Auth.auth().currentUser?.uid ?? "", roomName: setArrayImages?.name?.localized ?? "", price: setArrayImages?.price?.localized ?? "", status: roomStatus)
             reserveCheck = true
             performSegue(withIdentifier: Identifier.completion.rawValue, sender: nil)
-            
         }
     }
-    
-    
 }
 
 // MARK: CollectionView Set of rooms pictures
@@ -117,7 +118,7 @@ extension RoomsSelection: UICollectionViewDelegate, UICollectionViewDataSource, 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? RoomsImages else { return UICollectionViewCell()}
         guard let imagesArraySet = setArrayImages?.images?[indexPath.row] else { return UICollectionViewCell()}
         cell.roomsImageView.kf.setImage(with: URL(string: imagesArraySet),options: [.cacheOriginalImage])
-            
+        
         
         return cell
     }

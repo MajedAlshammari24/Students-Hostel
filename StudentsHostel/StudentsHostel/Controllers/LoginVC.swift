@@ -14,6 +14,8 @@ class LoginVC: UIViewController {
         passwordTextField.delegate = self
         rememberMeCheck()
         autoLoginButton.setImage(UIImage(systemName: "app"), for: .normal)
+        autoLoginButton.contentMode = .scaleAspectFill
+        autoLoginButton.clipsToBounds = true
     }
     
     override func viewDidAppear(_ animated: Bool) {

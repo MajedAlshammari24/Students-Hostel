@@ -1,0 +1,201 @@
+
+/* Class = "UILabel"; text = "Cancel?"; ObjectID = "0Ux-f3-Ngy"; */
+"0Ux-f3-Ngy.text" = "الغاء؟";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0Z2-bE-NeQ"; */
+"0Z2-bE-NeQ.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0xG-wy-Z8t"; */
+"0xG-wy-Z8t.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Services"; ObjectID = "1WB-Gr-6VE"; */
+"1WB-Gr-6VE.title" = "خدمات السكن";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "1YD-P7-Cvb"; */
+"1YD-P7-Cvb.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Password..."; ObjectID = "2WC-tJ-Zki"; */
+"2WC-tJ-Zki.placeholder" = "كلمة المرور...";
+
+/* Class = "UILabel"; text = "Your Password:"; ObjectID = "3vq-hh-nOO"; */
+"3vq-hh-nOO.text" = "كلمة المرور:";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "445-9j-ReT"; */
+"445-9j-ReT.title" = "الرئيسية";
+
+/* Class = "UITextField"; placeholder = "Email Address..."; ObjectID = "4pP-Lx-l1a"; */
+"4pP-Lx-l1a.placeholder" = "الايميل الشخصي...";
+
+/* Class = "UILabel"; text = "Your Mobile:"; ObjectID = "4sk-6T-ecU"; */
+"4sk-6T-ecU.text" = "رقم الجوال:";
+
+/* Class = "UITableViewSection"; headerTitle = "Student Information"; ObjectID = "5O3-xs-Wzf"; */
+"5O3-xs-Wzf.headerTitle" = "معلومات الطالب";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6aZ-kb-m1v"; */
+"6aZ-kb-m1v.text" = "Label";
+
+/* Class = "UILabel"; text = "Your Reserve is done successfully! We are waiting you soon"; ObjectID = "Ade-Cz-Mud"; */
+"Ade-Cz-Mud.text" = "تم الحجز بنجاح!، نحن بانتظارك في السكن قريبا";
+
+/* Class = "UILabel"; text = "Reservation Details"; ObjectID = "C4d-JX-L9p"; */
+"C4d-JX-L9p.text" = "بيانات الحجز";
+
+/* Class = "UINavigationItem"; title = "My Reservations"; ObjectID = "DKs-hM-gZb"; */
+"DKs-hM-gZb.title" = "حجوزاتي";
+
+/* Class = "UILabel"; text = "Your Name:"; ObjectID = "De7-cq-dLh"; */
+"De7-cq-dLh.text" = "اسمك:";
+
+/* Class = "UITabBarItem"; title = "My Reservations"; ObjectID = "EBk-T5-qP3"; */
+"EBk-T5-qP3.title" = "حجوزاتي";
+
+/* Class = "UITextField"; placeholder = "Name..."; ObjectID = "FOm-Gz-Lg0"; */
+"FOm-Gz-Lg0.placeholder" = "الاسم...";
+
+/* Class = "UITabBarItem"; title = "Profile"; ObjectID = "FbU-Ow-dTb"; */
+"FbU-Ow-dTb.title" = "الملف الشخصي";
+
+/* Class = "UILabel"; text = "ID"; ObjectID = "Hkp-gA-7Kg"; */
+"Hkp-gA-7Kg.text" = "الرقم الجامعي";
+
+/* Class = "UILabel"; text = "Rooms"; ObjectID = "IHo-iH-q9C"; */
+"IHo-iH-q9C.text" = "الغرف";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LlG-WI-qZK"; */
+"LlG-WI-qZK.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Terms And Conditions"; ObjectID = "PCs-id-zaC"; */
+"PCs-id-zaC.title" = "الاحكام والشروط";
+
+/* Class = "UITextField"; placeholder = "Password..."; ObjectID = "SmQ-RV-WAJ"; */
+"SmQ-RV-WAJ.placeholder" = "كلمة المرور";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Sx0-Dx-Hru"; */
+"Sx0-Dx-Hru.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UrN-uB-Ysa"; */
+"UrN-uB-Ysa.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "LogOut"; ObjectID = "WaY-Bp-npZ"; */
+"WaY-Bp-npZ.configuration.title" = "تسجيل الخروج";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WaY-Bp-npZ"; */
+"WaY-Bp-npZ.normalTitle" = "تسجيل الخروج";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xe5-aH-92z"; */
+"Xe5-aH-92z.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xsr-sV-QhV"; */
+"Xsr-sV-QhV.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Create Account"; ObjectID = "YyD-iD-XeZ"; */
+"YyD-iD-XeZ.configuration.title" = "انشاء حساب";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YyD-iD-XeZ"; */
+"YyD-iD-XeZ.normalTitle" = "انشاء حساب";
+
+/* Class = "UITextField"; placeholder = "Email Address..."; ObjectID = "Zxq-Ev-Zha"; */
+"Zxq-Ev-Zha.placeholder" = "الايميل الشخصي...";
+
+/* Class = "UINavigationItem"; title = "Hostel Services"; ObjectID = "aJO-Fv-Y54"; */
+"aJO-Fv-Y54.title" = "خدمات السكن";
+
+/* Class = "UITextField"; placeholder = "City..."; ObjectID = "b4n-0s-z9C"; */
+"b4n-0s-z9C.placeholder" = "المدينة...";
+
+/* Class = "UITextField"; placeholder = "Student ID..."; ObjectID = "biD-ke-jhm"; */
+"biD-ke-jhm.placeholder" = "الرقم الجامعي...";
+
+/* Class = "UITextField"; placeholder = "Mobile Number..."; ObjectID = "by1-kR-I0D"; */
+"by1-kR-I0D.placeholder" = "رقم الجوال...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cXW-kX-xZs"; */
+"cXW-kX-xZs.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "cYM-ty-RUq"; */
+"cYM-ty-RUq.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cYM-ty-RUq"; */
+"cYM-ty-RUq.normalTitle" = " ";
+
+/* Class = "UILabel"; text = "Your Email:"; ObjectID = "d0Z-7J-VC2"; */
+"d0Z-7J-VC2.text" = "الايميل الشخصي...";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "dth-Ez-LxG"; */
+"dth-Ez-LxG.text" = "الايميل";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "egu-d0-q9v"; */
+"egu-d0-q9v.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gZM-Dm-dvq"; */
+"gZM-Dm-dvq.text" = "Label";
+
+/* Class = "UILabel"; text = "Remember me"; ObjectID = "hCK-IV-cSB"; */
+"hCK-IV-cSB.text" = "تذكرني";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "hjS-uN-gF9"; */
+"hjS-uN-gF9.text" = "كلمة المرور";
+
+/* Class = "UIButton"; configuration.title = "New? Create accoount"; ObjectID = "j5f-TY-PZa"; */
+"j5f-TY-PZa.configuration.title" = "جديد؟ قم بانشاء حساب";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "j5f-TY-PZa"; */
+"j5f-TY-PZa.normalTitle" = "جديد؟ قم بانشاء حساب";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kFz-d7-Pe2"; */
+"kFz-d7-Pe2.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "kY8-1d-oKt"; */
+"kY8-1d-oKt.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Profile"; ObjectID = "kn9-yu-aRL"; */
+"kn9-yu-aRL.headerTitle" = "الملف الشخصي";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "kq1-6m-0jZ"; */
+"kq1-6m-0jZ.text" = "الايميل";
+
+/* Class = "UILabel"; text = "I Agree to terms and conditions"; ObjectID = "kwr-Xc-CpZ"; */
+"kwr-Xc-CpZ.text" = "اوافق على الشروط والاحكام";
+
+/* Class = "UILabel"; text = "Your City:"; ObjectID = "lwm-bY-MA7"; */
+"lwm-bY-MA7.text" = "المدينة:";
+
+/* Class = "UIButton"; configuration.title = "Login"; ObjectID = "mSW-r2-r0b"; */
+"mSW-r2-r0b.configuration.title" = "تسجيل الدخول";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "mSW-r2-r0b"; */
+"mSW-r2-r0b.normalTitle" = "تسجيل الدخول";
+
+/* Class = "UILabel"; text = "Mobile"; ObjectID = "of0-nL-Loi"; */
+"of0-nL-Loi.text" = "رقم الجوال";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ots-RB-Ulo"; */
+"ots-RB-Ulo.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Read them?"; ObjectID = "p5z-RI-DTV"; */
+"p5z-RI-DTV.configuration.title" = "";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "p5z-RI-DTV"; */
+"p5z-RI-DTV.normalTitle" = "";
+
+/* Class = "UIButton"; configuration.title = "Reserve"; ObjectID = "p8f-id-CAM"; */
+"p8f-id-CAM.configuration.title" = "حجز";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "p8f-id-CAM"; */
+"p8f-id-CAM.normalTitle" = "حجز";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qX9-i0-llc"; */
+"qX9-i0-llc.text" = "Label";
+
+/* Class = "UILabel"; text = "City"; ObjectID = "qbh-K8-iHQ"; */
+"qbh-K8-iHQ.text" = "المدينة";
+
+/* Class = "UILabel"; text = "Your Student ID:"; ObjectID = "wAa-Td-H8t"; */
+"wAa-Td-H8t.text" = "الرقم الجامعي:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ydt-m6-cvP"; */
+"ydt-m6-cvP.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "zuv-4M-nYp"; */
+"zuv-4M-nYp.title" = "الرئيسية";
