@@ -101,7 +101,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollect
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HomePageImagesCell else { return UICollectionViewCell()}
         guard let arrayPhotos = homePhotos?.homeImages?[indexPath.row] else { return UICollectionViewCell()}
-        cell.imageView.kf.setImage(with: URL(string: arrayPhotos))
+        cell.imageView.kf.setImage(with: URL(string: arrayPhotos),options: [.cacheOriginalImage])
         return cell
     }
     

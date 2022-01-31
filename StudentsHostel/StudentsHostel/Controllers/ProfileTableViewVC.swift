@@ -131,25 +131,6 @@ class ProfileTableViewVC: UITableViewController {
                 windows.overrideUserInterfaceStyle = .light
             }
         }
-        
-        //        if appeareanceSwitch.isOn{
-        //            userDefault.set(true, forKey: ON_OFF_KEY)
-        //        } else {
-        //            userDefault.set(false, forKey: ON_OFF_KEY)
-        //
-        //        }
-        
-        
-        //        if appeareanceSwitch.isOn {
-        //            UIApplication.shared.windows.forEach { window in
-        //                window.overrideUserInterfaceStyle = .dark
-        //            }
-        //        } else {
-        //            UIApplication.shared.windows.forEach { window in
-        //                window.overrideUserInterfaceStyle = .light
-        //            }
-        //        }
-        
     }
     
     @IBAction func selectLanguage(_ sender: UIButton) {
